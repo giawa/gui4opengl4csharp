@@ -69,4 +69,4 @@ button.OnMouseUp = (sender, e) => button.BackgroundColor = (OpenGL.UI.UserInterf
 button.OnMouseClick = (sender, e) => characterName.String = string.Format("You selected {0}!", character);
 ```
 
-Note:  Icons made by (Freepik)[http://www.freepik.com] from (http://www.flaticon.com)[www.flaticon.com] are licensed by CC 3.0 BY.
+Note:  Icons made by [Freepik](http://www.freepik.com) from [http://www.flaticon.com](www.flaticon.com) are licensed by CC 3.0 BY.

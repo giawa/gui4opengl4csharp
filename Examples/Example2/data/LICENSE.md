@@ -1,1 +1,1 @@
-Icons made by (Freepik)[http://www.freepik.com] from (http://www.flaticon.com)[www.flaticon.com] is licensed by CC 3.0 BY.
+Icons made by [Freepik](http://www.freepik.com) from [http://www.flaticon.com](www.flaticon.com) are licensed by CC 3.0 BY.
