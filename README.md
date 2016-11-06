@@ -70,3 +70,29 @@ button.OnMouseClick = (sender, e) => characterName.String = string.Format("You s
 ```
 
 Note:  Icons made by [Freepik](http://www.freepik.com) from [http://www.flaticon.com](www.flaticon.com) are licensed by CC 3.0 BY.
+
+### Example 3
+![Example 3](https://giawa.github.com/ui/example3.png)
+
+In this third example we try out some color picking.  There are two built-in controls that can help with this (I have plans to merge them into a single control later).  We can create a hue slider and a color picker.  Here's the relevant code.
+
+```csharp
+// create the color picker itself
+OpenGL.UI.Controls.ColorGradient gradient = new OpenGL.UI.Controls.ColorGradient();
+gradient.RelativeTo = OpenGL.UI.Corner.Center;
+gradient.Position = new OpenGL.UI.Point(-20, 0);
+gradient.OnColorChange = (sender, e) => selectText.Color = gradient.Color;
+
+// and create a hue slider that can control the types of colors shown in the color picker
+OpenGL.UI.Controls.HueGradient hue = new OpenGL.UI.Controls.HueGradient();
+hue.RelativeTo = OpenGL.UI.Corner.Center;
+hue.Position = new OpenGL.UI.Point(80, 0);
+
+// add the color picker and its hue slider to the UI
+OpenGL.UI.UserInterface.AddElement(gradient);
+OpenGL.UI.UserInterface.AddElement(hue);
+```
+
+Also, to switch things up a bit I moved this example over to SDL2, which is more modern and deals with newer versions of Windows a bit better.  I wrapped most of the SDL calls into a Window class, so that makes the Program.cs file much smaller and easier to understand.  Here's the color picker in action (low quality gif to save on size):
+
+![Example 3 Animated](https://giawa.github.com/ui/example3.gif)
