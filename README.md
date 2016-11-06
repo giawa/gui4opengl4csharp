@@ -1,11 +1,11 @@
-# GUI for [OpenGL 4.5 for C#](https://github.com/giawa/opengl4csharp)
+# GUI for [OpenGL 4 for C#](https://github.com/giawa/opengl4csharp)
 This code originated with my second generation graphics engine (Orchard Sun) and was then incorporated into my voxel engine (Summer Dawn) which powers [Live Love Farm](http://giawa.com/llf/).  I thought it would be neat to release all of this code as open source, since it might be interesting and helpful.  This code also supports the new System.Numerics code from the OpenGL library, so you can compile with USE_NUMERICS if you would like!
 
 ## License
 Check the included [LICENSE.md](https://github.com/giawa/gui4opengl4csharp/blob/master/LICENSE.md) file for the license associated with this code.  The code is currently licensed under the MIT license.
 
 ## Building the Project
-This project includes a .sln and .csproj file which will create a class library.  This class library uses the OpenGL.UI namespace, which extends the OpenGL namespace from [OpenGL 4.5 for C#](https://github.com/giawa/opengl4csharp).
+This project includes a .sln and .csproj file which will create a class library.  This class library uses the OpenGL.UI namespace, which extends the OpenGL namespace from [OpenGL 4 for C#](https://github.com/giawa/opengl4csharp).
 
 ## Built-In Controls
 OpenGL.UI.Controls contains several built-in controls.
@@ -28,11 +28,13 @@ In this first example we create a window using FreeGlut.  Nearly all of the code
 
 ```csharp
 // create some centered text
-OpenGL.UI.Controls.Text welcome = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._24pt, "Welcome to OpenGL", OpenGL.UI.Controls.BMFont.Justification.Center);
+OpenGL.UI.Controls.Text welcome = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._24pt, 
+	"Welcome to OpenGL", OpenGL.UI.Controls.BMFont.Justification.Center);
 welcome.RelativeTo = OpenGL.UI.Corner.Center;
 
 // create some colored text
-OpenGL.UI.Controls.Text coloredText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._24pt, "using C#", OpenGL.UI.Controls.BMFont.Justification.Center);
+OpenGL.UI.Controls.Text coloredText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._24pt, 
+	"using C#", OpenGL.UI.Controls.BMFont.Justification.Center);
 coloredText.Position = new OpenGL.UI.Point(0, -30);
 coloredText.Color = new Vector3(0.2f, 0.3f, 1f);
 coloredText.RelativeTo = OpenGL.UI.Corner.Center;
