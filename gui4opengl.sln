@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gui4opengl", "gui4opengl\gui4opengl.csproj", "{87396D4A-144F-402E-AC9A-42205B8A3312}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{4A504611-254E-437F-BE9A-1CB60BFDB84A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example1", "Examples\Example1\Example1.csproj", "{5070145C-AB03-4187-BE76-6D51D4863D31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87396D4A-144F-402E-AC9A-42205B8A3312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87396D4A-144F-402E-AC9A-42205B8A3312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87396D4A-144F-402E-AC9A-42205B8A3312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87396D4A-144F-402E-AC9A-42205B8A3312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5070145C-AB03-4187-BE76-6D51D4863D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5070145C-AB03-4187-BE76-6D51D4863D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5070145C-AB03-4187-BE76-6D51D4863D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5070145C-AB03-4187-BE76-6D51D4863D31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5070145C-AB03-4187-BE76-6D51D4863D31} = {4A504611-254E-437F-BE9A-1CB60BFDB84A}
+	EndGlobalSection
+EndGlobal
