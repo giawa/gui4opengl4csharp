@@ -24,6 +24,8 @@ There are several more controls on the way.  They just have to be converted from
 ## Examples
 I will include several example projects in the Examples directory.
 ### Example 1
+![Example 1](https://giawa.github.com/ui/example1.png)
+
 In this first example we create a window using FreeGlut.  Nearly all of the code in this example is either to initialize FreeGlut, or to hook up the callbacks from FreeGlut correctly.  The interesting portion of the code is here:
 
 ```csharp
@@ -46,9 +48,9 @@ OpenGL.UI.UserInterface.AddElement(coloredText);
 
 We add two Text objects to the screen.  Notice that they are marked as being relative to the center of the screen.  This means their positions will update properly when the screen is resized.  Try it out!
 
-![Example 1](https://giawa.github.com/ui/example1.png)
-
 ### Example 2
+![Example 2](https://giawa.github.com/ui/example2.gif)
+
 In this second example we create several Button elements and attach OnMouseEnter, OnMouseLeave, OnMouseClick, OnMouseDown and OnMouseUp events.  Each Button has a Texture that is loaded from an included data directory.  Here's the interesting bit of code, which makes heavy use of lambda functions.
 
 ```csharp
@@ -68,5 +70,3 @@ button.OnMouseClick = (sender, e) => characterName.String = string.Format("You s
 ```
 
 Note:  Icons made by (Freepik)[http://www.freepik.com] from (http://www.flaticon.com)[www.flaticon.com] are licensed by CC 3.0 BY.
-
-![Example 2](https://giawa.github.com/ui/example2.gif)
