@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gui4opengl", "gui4opengl\gui4opengl.csproj", "{87396D4A-144F-402E-AC9A-42205B8A3312}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGL.UI", "gui4opengl\OpenGL.UI.csproj", "{87396D4A-144F-402E-AC9A-42205B8A3312}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{4A504611-254E-437F-BE9A-1CB60BFDB84A}"
 EndProject

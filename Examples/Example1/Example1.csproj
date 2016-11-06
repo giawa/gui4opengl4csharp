@@ -73,9 +73,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\gui4opengl\gui4opengl.csproj">
+    <ProjectReference Include="..\..\gui4opengl\OpenGL.UI.csproj">
       <Project>{87396d4a-144f-402e-ac9a-42205b8a3312}</Project>
-      <Name>gui4opengl</Name>
+      <Name>OpenGL.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
