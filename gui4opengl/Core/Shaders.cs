@@ -170,20 +170,10 @@ in vec3 in_position;
 in vec2 in_uv;
 
 out vec2 uv;
-out vec3 color;
-
-vec3 unpackColor(float f) {
-    float rb = floor(f / 100);
-    float rg = floor(f - rb * 100);
-    float rr = f - rb * 100 - rg;
-
-    return vec3(rr, rg / 100.0, rb / 100.0);
-}
 
 void main(void)
 {
   uv = in_uv;
-  color = unpackColor(in_position.z);
   gl_Position = ui_projection_matrix * vec4(in_position.x + position.x, in_position.y + position.y, 0, 1);
 }";
 
@@ -191,9 +181,9 @@ void main(void)
 #version 140
 
 uniform sampler2D active_texture;
+uniform vec3 color;
 
 in vec2 uv;
-in vec3 color;
 
 void main(void)
 {

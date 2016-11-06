@@ -232,10 +232,6 @@ namespace OpenGL.UI.Controls
             else if (justification == Justification.Center) xpos = -GetWidth(text) / 2;
 
             Vector3 scalingFactor = Vector3.One * scale;
-            float r = Math.Min(0.99f, color.X);
-            float g = Math.Min(0.99f, color.Y);
-            float b = Math.Min(0.99f, color.Z);
-            Vector3 c = new Vector3(0, 0, r + g * 100 + b * 100 * 100);
 
             for (int i = 0; i < text.Length; i++)
             {
@@ -268,8 +264,6 @@ namespace OpenGL.UI.Controls
                 indices[i * 6 + 4] = i * 4 + 2;
                 indices[i * 6 + 5] = i * 4 + 1;
             }
-
-            for (int i = 0; i < text.Length * 4; i++) vertices[i] += c;
         }
 
         /// <summary>

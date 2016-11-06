@@ -44,14 +44,7 @@ namespace OpenGL.UI.Controls
         public Vector3 Color
         {
             get { return color; }
-            set
-            {
-                if (color != value)
-                {
-                    color = value;
-                    bitmapFont.CreateString(VAO, text, color, justification);
-                }
-            }
+            set { color = value; }
         }
 
         public BMFont.Justification Justification
@@ -157,6 +150,7 @@ namespace OpenGL.UI.Controls
             Gl.Enable(EnableCap.Blend);
             Program.Use();
             Program["position"].SetValue(new Vector2(CorrectedPosition.x + Padding.x, CorrectedPosition.y + Padding.y));
+            Program["color"].SetValue(color);
             VAO.BindAttributes(Program);
             Gl.DrawElements(BeginMode.Triangles, vertexCount, DrawElementsType.UnsignedInt, IntPtr.Zero);
             Gl.Disable(EnableCap.Blend);
@@ -179,6 +173,7 @@ namespace OpenGL.UI.Controls
             Program.Use();
             if (this.Justification == BMFont.Justification.Center) Program["position"].SetValue(new Vector2(CorrectedPosition.x + Padding.x + Size.x / 2, CorrectedPosition.y + Padding.y + yoffset));
             else Program["position"].SetValue(new Vector2(CorrectedPosition.x + Padding.x, CorrectedPosition.y + Padding.y + yoffset));
+            Program["color"].SetValue(color);
             VAO.Draw();
             Gl.Disable(EnableCap.Blend);
         }
