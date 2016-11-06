@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\CheckBox.cs" />
+    <Compile Include="Controls\ColorPicker.cs" />
     <Compile Include="Controls\Console.cs" />
     <Compile Include="Controls\DialogBox.cs" />
     <Compile Include="Controls\Font.cs" />
