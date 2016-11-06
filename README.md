@@ -47,3 +47,26 @@ OpenGL.UI.UserInterface.AddElement(coloredText);
 We add two Text objects to the screen.  Notice that they are marked as being relative to the center of the screen.  This means their positions will update properly when the screen is resized.  Try it out!
 
 ![Example 1](https://giawa.github.com/ui/example1.png)
+
+### Example 2
+In this second example we create several Button elements and attach OnMouseEnter, OnMouseLeave, OnMouseClick, OnMouseDown and OnMouseUp events.  Each Button has a Texture that is loaded from an included data directory.  Here's the interesting bit of code, which makes heavy use of lambda functions.
+
+```csharp
+// create buttons in a row, each of which uses a Texture (the Texture gives the initial size of the Button in pixels)
+OpenGL.UI.Controls.Button button = new OpenGL.UI.Controls.Button(textures[i]);
+button.Position = new OpenGL.UI.Point(xoffset, 5);
+button.RelativeTo = OpenGL.UI.Corner.Center;
+
+// change the color of the button when entering/leaving/clicking with the mouse
+button.OnMouseEnter = (sender, e) => button.BackgroundColor = new Vector4(0, 1f, 0.2f, 1.0f);
+button.OnMouseLeave = (sender, e) => button.BackgroundColor = Vector4.Zero;
+button.OnMouseDown = (sender, e) => button.BackgroundColor = new Vector4(0, 0.6f, 1f, 1f);
+button.OnMouseUp = (sender, e) => button.BackgroundColor = (OpenGL.UI.UserInterface.Selection == button ? new Vector4(0, 1f, 0.2f, 1.0f) : Vector4.Zero);
+
+// update the text with the character name when the button is clicked
+button.OnMouseClick = (sender, e) => characterName.String = string.Format("You selected {0}!", character);
+```
+
+Note:  Icons made by (Freepik)[http://www.freepik.com] from (http://www.flaticon.com)[www.flaticon.com] are licensed by CC 3.0 BY.
+
+![Example 2](https://giawa.github.com/ui/example2.gif)
