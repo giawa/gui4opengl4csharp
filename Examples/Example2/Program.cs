@@ -6,7 +6,7 @@ namespace Example1
 {
     static class Program
     {
-        private static int width = 1280 / 2, height = 720 / 2;
+        private static int width = 1280, height = 720;
         private static Texture[] textures;
 
         static void Main()
