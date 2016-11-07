@@ -13,7 +13,6 @@ OpenGL.UI.Controls contains several built-in controls.
 * Check Box
 * Color Picker (standard HSL with RGB output)
 * Console (a TextBox with input)
-* Dialog Box (a container for controls)
 * List Box
 * Slider
 * Text
