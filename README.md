@@ -11,6 +11,7 @@ This project includes a .sln and .csproj file which will create a class library.
 OpenGL.UI.Controls contains several built-in controls.
 * Button
 * Check Box
+* Color Picker (standard HSL with RGB output)
 * Console (a TextBox with input)
 * Dialog Box (a container for controls)
 * List Box
@@ -96,3 +97,37 @@ OpenGL.UI.UserInterface.AddElement(hue);
 Also, to switch things up a bit I moved this example over to SDL2, which is more modern and deals with newer versions of Windows a bit better.  I wrapped most of the SDL calls into a Window class, so that makes the Program.cs file much smaller and easier to understand.  Here's the color picker in action (low quality gif to save on size):
 
 ![Example 3 Animated](https://giawa.github.com/ui/example3.gif)
+
+### Example 4
+![Example 4](https://giawa.github.com/ui/example4.png)
+
+In this next example we place the color picker into its own UIContainer.  The UIContainer can hold as many user interface elements as we would like, including other containers!  If we move the UIContainer then all of its child elements will move as well.  This allows us to create dialog boxes, menus and other groupable/moveable things.
+
+I've put a menubar in the UIContainer, and added some simple code that will move the entire UIContainer with the mouse.  Here's the relevant code:
+
+```csharp
+// add some events that will move the entire color picker container with the menu bar
+bool moving = false;
+menu.OnMouseDown = (sender, e) =>
+    {
+        moving = true;
+        menu.BackgroundTexture = menuSelectedTexture;   // make it look nice by swapping the menubar texture
+    };
+menu.OnMouseUp = (sender, e) =>
+    {
+        moving = false;
+        menu.BackgroundTexture = menuTexture;   // make sure to restore the menubar texture
+    };
+menu.OnMouseMove = (sender, e) =>
+    {
+        if (moving)
+        {
+            int x = colorPickerContainer.Position.x + OpenGL.UI.UserInterface.MousePosition.x - OpenGL.UI.UserInterface.LastMousePosition.x;
+            int y = colorPickerContainer.Position.y + OpenGL.UI.UserInterface.MousePosition.y - OpenGL.UI.UserInterface.LastMousePosition.y;
+            colorPickerContainer.Position = new OpenGL.UI.Point(x, y);
+            colorPickerContainer.OnResize();
+        }
+    };
+```
+
+![Example 4 Animated](https://giawa.github.com/ui/example4.gif)
