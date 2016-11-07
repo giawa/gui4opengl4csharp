@@ -51,6 +51,8 @@ namespace OpenGL.UI.Controls
             set
             {
                 if (value < min || value > max) throw new ArgumentOutOfRangeException("Value");
+                if (value != this.value && OnValueChanged != null) OnValueChanged(this, new MouseEventArgs());
+
                 this.value = value;
 
                 int x = (int)((value - min) * (Size.x - sliderButton.Size.x) / (max - min));
@@ -64,6 +66,11 @@ namespace OpenGL.UI.Controls
         /// This, for example, will cause the slider to 'jump' to the next valid value.
         /// </summary>
         public bool LockToSteps { get; set; }
+
+        /// <summary>
+        /// An event that is fired when the value of the slider changes.
+        /// </summary>
+        public OnMouse OnValueChanged { get; set; }
         #endregion
 
         #region Constructor
@@ -84,23 +91,26 @@ namespace OpenGL.UI.Controls
             sliderButton = new Button(sliderTexture);
             sliderButton.BackgroundColor = new Vector4(0, 0, 0, 0);
 
-            sliderButton.OnMouseUp = new OnMouse((sender, eventArgs) => sliderMouseDown = false);
-            sliderButton.OnMouseDown = new OnMouse((sender, eventArgs) =>
+            sliderButton.OnMouseUp = (sender, eventArgs) => sliderMouseDown = false;
+            sliderButton.OnMouseDown = (sender, eventArgs) =>
             {
                 sliderMouseDown = (eventArgs.Button == MouseButton.Left);
                 sliderDown = eventArgs.Location.x;
-            });
-            sliderButton.OnMouseMove = new OnMouse((sender, eventArgs) =>
+            };
+            sliderButton.OnMouseMove = (sender, eventArgs) => this.OnMouseMove(sender, eventArgs);
+            this.OnMouseMove = (sender, eventArgs) =>
             {
                 if (!sliderMouseDown) return;
 
                 if (eventArgs.Location.x < CorrectedPosition.x)
                 {
+                    // handle case where the mouse has gone too far to the left
                     sliderButton.Position = new Point(0, 0);
                     this.Value = Minimum;
                 }
                 else if (eventArgs.Location.x > CorrectedPosition.x + Size.x)
                 {
+                    // handle case where the mouse has gone too far to the right
                     sliderButton.Position = new Point(Size.x - sliderButton.Size.x, 0);
                     this.Value = Maximum;
                 }
@@ -108,20 +118,28 @@ namespace OpenGL.UI.Controls
                 {
                     int dx = eventArgs.Location.x - sliderDown;
 
-                    int x = eventArgs.Location.x - CorrectedPosition.x - (sliderButton.Size.x >> 1);
+                    int x = eventArgs.Location.x - CorrectedPosition.x - (sliderButton.Size.x / 2);
                     double percent = Math.Max(0, (double)x / (Size.x - sliderButton.Size.x));
 
+                    // take care of locking to the closest step
                     if (LockToSteps) x = (int)(Math.Round(percent * (Maximum - Minimum)) * (Size.x - sliderButton.Size.x) / (Maximum - Minimum));
                     else x = Math.Max(0, Math.Min(Size.x - sliderButton.Size.x, x));
 
                     if (x == sliderButton.Position.x) return;
+                    sliderButton.Position = new Point(x, 0);
 
                     sliderDown = eventArgs.Location.x;
 
-                    this.Value = Math.Max(Minimum, Math.Min(Maximum, (int)Math.Round((Maximum - Minimum) * percent) + Minimum));
+                    int clampedValue = Math.Max(Minimum, Math.Min(Maximum, (int)Math.Round((Maximum - Minimum) * percent) + Minimum));
+
+                    if (this.value != clampedValue)
+                    {
+                        this.value = clampedValue;
+                        if (OnValueChanged != null) OnValueChanged(this, new MouseEventArgs());
+                    }
                 }
                 sliderButton.OnResize();
-            });
+            };
 
             sliderButton.RelativeTo = Corner.BottomLeft;
             sliderButton.Position = new Point(value * (Size.x - sliderButton.Size.x) / (max - min), 0);
