@@ -9,7 +9,7 @@ namespace Example5
 
         static void Main()
         {
-            Window.CreateWindow("OpenGL UI: Example 5", 1280 / 2, 720 / 2);
+            Window.CreateWindow("OpenGL UI: Example 5", 1280, 720);
 
             // add a reshape callback to update the UI
             Window.OnReshapeCallbacks.Add(() => OpenGL.UI.UserInterface.OnResize(Window.Width, Window.Height));
@@ -24,13 +24,13 @@ namespace Example5
             // initialize the user interface
             OpenGL.UI.UserInterface.InitUI(Window.Width, Window.Height);
 
-// create a slider with a specified texture
-sliderTexture = new Texture("data/slider.png");
+            // create a slider with a specified texture
+            sliderTexture = new Texture("data/slider.png");
 
-OpenGL.UI.Controls.Slider slider = new OpenGL.UI.Controls.Slider(sliderTexture);
-slider.RelativeTo = OpenGL.UI.Corner.Center;
-slider.BackgroundColor = new Vector4(0.1f, 0.1f, 0.1f, 1f);
-slider.LockToSteps = true;
+            OpenGL.UI.Controls.Slider slider = new OpenGL.UI.Controls.Slider(sliderTexture);
+            slider.RelativeTo = OpenGL.UI.Corner.Center;
+            slider.BackgroundColor = new Vector4(0.1f, 0.1f, 0.1f, 1f);
+            slider.LockToSteps = true;
 
             // create some text that will change with the slider position
             OpenGL.UI.Controls.Text text = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._16pt, "Value: 0");

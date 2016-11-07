@@ -49,7 +49,7 @@ OpenGL.UI.UserInterface.AddElement(coloredText);
 We add two Text objects to the screen.  Notice that they are marked as being relative to the center of the screen.  This means their positions will update properly when the screen is resized.  Try it out!
 
 ### Example 2
-![Example 2](https://giawa.github.com/ui/example2.gif)
+![Example 2](https://giawa.github.com/ui/example2.png)
 
 In this second example we create several Button elements and attach OnMouseEnter, OnMouseLeave, OnMouseClick, OnMouseDown and OnMouseUp events.  Each Button has a Texture that is loaded from an included data directory.  Here's the interesting bit of code, which makes heavy use of lambda functions.
 
@@ -68,6 +68,8 @@ button.OnMouseUp = (sender, e) => button.BackgroundColor = (OpenGL.UI.UserInterf
 // update the text with the character name when the button is clicked
 button.OnMouseClick = (sender, e) => characterName.String = string.Format("You selected {0}!", character);
 ```
+
+![Example 2 Animated](https://giawa.github.com/ui/example2.gif)
 
 Note:  Icons made by [Freepik](http://www.freepik.com) from [http://www.flaticon.com](www.flaticon.com) are licensed by CC 3.0 BY.
 
@@ -134,7 +136,7 @@ menu.OnMouseMove = (sender, e) =>
 ![Example 4 Animated](https://giawa.github.com/ui/example4.gif)
 
 ### Example 5
-![Example 5 Animated](https://giawa.github.com/ui/example5.gif)
+![Example 5](https://giawa.github.com/ui/example5.png)
 
 This this fifth example we try out the Slider control.  The slider is pretty simple to use, with a maximum, minimum and value property.  You can also lock the slider to the closest integer value, which results in the animated image above.  Here's the relevant construction of the Slider control:
 
@@ -147,3 +149,5 @@ slider.RelativeTo = OpenGL.UI.Corner.Center;
 slider.BackgroundColor = new Vector4(0.1f, 0.1f, 0.1f, 1f);
 slider.LockToSteps = true;
 ```
+
+![Example 5 Animated](https://giawa.github.com/ui/example5.gif)
