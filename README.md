@@ -132,3 +132,18 @@ menu.OnMouseMove = (sender, e) =>
 ```
 
 ![Example 4 Animated](https://giawa.github.com/ui/example4.gif)
+
+### Example 5
+![Example 5 Animated](https://giawa.github.com/ui/example5.gif)
+
+This this fifth example we try out the Slider control.  The slider is pretty simple to use, with a maximum, minimum and value property.  You can also lock the slider to the closest integer value, which results in the animated image above.  Here's the relevant construction of the Slider control:
+
+```csharp
+// create a slider with a specified texture
+sliderTexture = new Texture("data/slider.png");
+
+OpenGL.UI.Controls.Slider slider = new OpenGL.UI.Controls.Slider(sliderTexture);
+slider.RelativeTo = OpenGL.UI.Corner.Center;
+slider.BackgroundColor = new Vector4(0.1f, 0.1f, 0.1f, 1f);
+slider.LockToSteps = true;
+```
