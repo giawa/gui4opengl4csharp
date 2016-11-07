@@ -151,3 +151,5 @@ slider.LockToSteps = true;
 ```
 
 ![Example 5 Animated](https://giawa.github.com/ui/example5.gif)
+
+### Example 6: Coming soon...
