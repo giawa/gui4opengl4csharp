@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenGL">
-      <HintPath>..\libs\OpenGL.dll</HintPath>
+      <HintPath>libs\OpenGL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
