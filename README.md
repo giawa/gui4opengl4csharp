@@ -121,8 +121,10 @@ menu.OnMouseMove = (sender, e) =>
     {
         if (moving)
         {
-            int x = colorPickerContainer.Position.x + OpenGL.UI.UserInterface.MousePosition.x - OpenGL.UI.UserInterface.LastMousePosition.x;
-            int y = colorPickerContainer.Position.y + OpenGL.UI.UserInterface.MousePosition.y - OpenGL.UI.UserInterface.LastMousePosition.y;
+            int x = colorPickerContainer.Position.x + 
+			    OpenGL.UI.UserInterface.MousePosition.x - OpenGL.UI.UserInterface.LastMousePosition.x;
+            int y = colorPickerContainer.Position.y + 
+			    OpenGL.UI.UserInterface.MousePosition.y - OpenGL.UI.UserInterface.LastMousePosition.y;
             colorPickerContainer.Position = new OpenGL.UI.Point(x, y);
             colorPickerContainer.OnResize();
         }
