@@ -51,6 +51,11 @@ namespace OpenGL.UI.Controls
                 else text.String = textString;
             }
         }
+
+        /// <summary>
+        /// An event that is fired when the checkbox changes state.
+        /// </summary>
+        public OnMouse OnCheckedChanged { get; set; }
         #endregion
 
         #region Checkbox Textures and State
@@ -79,6 +84,7 @@ namespace OpenGL.UI.Controls
             set
             {
                 isChecked = value;
+                OnCheckedChanged(this, new MouseEventArgs());
 
                 if (isChecked) checkBox.BackgroundTexture = CheckedTexture;
                 else checkBox.BackgroundTexture = UncheckedTexture;

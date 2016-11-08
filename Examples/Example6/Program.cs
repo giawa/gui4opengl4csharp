@@ -28,13 +28,15 @@ namespace Example6
             checkBoxTexture = new Texture("data/checkBox.png");
             checkBoxCheckedTexture = new Texture("data/checkBoxChecked.png");
 
-            OpenGL.UI.Controls.CheckBox checkbox1 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font14.fnt"), "Check Me!");
+            OpenGL.UI.Controls.CheckBox checkbox1 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me!");
             checkbox1.RelativeTo = OpenGL.UI.Corner.Center;
-            checkbox1.Position = new OpenGL.UI.Point(-30, 12);
+            checkbox1.Position = new OpenGL.UI.Point(-50, 12);
+            checkbox1.OnCheckedChanged = (sender, e) => checkbox1.Text = (checkbox1.Checked ? "Thanks!" : "Check Me!");
 
-            OpenGL.UI.Controls.CheckBox checkbox2 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font14.fnt"), "Check Me Too!");
+            OpenGL.UI.Controls.CheckBox checkbox2 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me Too!");
             checkbox2.RelativeTo = OpenGL.UI.Corner.Center;
-            checkbox2.Position = new OpenGL.UI.Point(-30, -12);
+            checkbox2.Position = new OpenGL.UI.Point(-50, -12);
+            checkbox2.OnCheckedChanged = (sender, e) => checkbox2.Text = (checkbox2.Checked ? "Thanks!" : "Check Me Too!");
 
             // add both the slider and text controls to the UI
             OpenGL.UI.UserInterface.AddElement(checkbox1);

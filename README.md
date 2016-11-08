@@ -158,11 +158,8 @@ slider.LockToSteps = true;
 In this example we create two simple CheckBox controls.  They're pretty simple, and use two textures - one for the 'checked' state, and one for the 'unchecked' state.  Here's the relevant code:
 
 ```csharp
-OpenGL.UI.Controls.CheckBox checkbox1 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font14.fnt"), "Check Me!");
+OpenGL.UI.Controls.CheckBox checkbox1 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me!");
 checkbox1.RelativeTo = OpenGL.UI.Corner.Center;
-checkbox1.Position = new OpenGL.UI.Point(-30, 12);
-
-OpenGL.UI.Controls.CheckBox checkbox2 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font14.fnt"), "Check Me Too!");
-checkbox2.RelativeTo = OpenGL.UI.Corner.Center;
-checkbox2.Position = new OpenGL.UI.Point(-30, -12);
+checkbox1.Position = new OpenGL.UI.Point(-50, 12);
+checkbox1.OnCheckedChanged = (sender, e) => checkbox1.Text = (checkbox1.Checked ? "Thanks!" : "Check Me!");
 ```
