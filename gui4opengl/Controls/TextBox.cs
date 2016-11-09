@@ -157,6 +157,7 @@ namespace OpenGL.UI.Controls
             {
                 allowScrollBar = value;
                 if (Parent == null) return;
+                if (scrollBar == null) return;
 
                 if (allowScrollBar && LineCount > MaximumLines) Parent.AddElement(scrollBar);
                 else Parent.RemoveElement(scrollBar);
@@ -170,6 +171,7 @@ namespace OpenGL.UI.Controls
         {
             if (LineCount <= MaximumLines) return;
             if (Parent == null) return;
+            if (scrollBar == null) return;
 
             scrollBar.RelativeTo = Corner.BottomLeft;
 
@@ -185,7 +187,7 @@ namespace OpenGL.UI.Controls
         #endregion
 
         #region Constructor
-        public TextBox(BMFont font, int selectedLine = -1)
+        public TextBox(BMFont font, Texture scrollTexture, int selectedLine = -1)
         {
             this.Font = font;
             this.SelectedColor = new Vector4(0.3f, 0.9f, 0.3f, 1f);
@@ -198,7 +200,7 @@ namespace OpenGL.UI.Controls
                 });
 
             // set up the scroll bar
-            if (scrollbarTexture == null) scrollbarTexture = new Texture("tex/misc/scrollbar.png");
+            if (scrollbarTexture == null) scrollbarTexture = scrollTexture;
             this.scrollBar = new Button(scrollbarTexture);
             this.scrollBar.BackgroundColor = new Vector4(0, 0, 0, 0);
             this.scrollBar.Size = new Point(scrollBar.Size.x, scrollBar.Size.y / 2);
@@ -232,6 +234,7 @@ namespace OpenGL.UI.Controls
             {
                 if (this.OnLoseFocus != null) this.OnLoseFocus(o, e);
             });
+            this.OnMouseMove = (sender, eventArgs) => scrollBar.OnMouseMove(sender, eventArgs);
         }
         #endregion
 
@@ -333,12 +336,12 @@ namespace OpenGL.UI.Controls
             vaos.Clear();
 
             // check if we should show the scrollbar
-            if (lines.Count > MaximumLines && allowScrollBar)
+            if (lines.Count > MaximumLines && allowScrollBar && scrollBar != null)
             {
                 if (scrollBar.Name == null || !UserInterface.Elements.ContainsKey(scrollBar.Name)) 
                     Parent.AddElement(scrollBar);
             }
-            else if (Parent != null) Parent.RemoveElement(scrollBar);
+            else if (Parent != null && scrollBar != null) Parent.RemoveElement(scrollBar);
 
             // now build the VAO objects
             for (int i = CurrentLine; i < MaximumLines + CurrentLine; i++)

@@ -82,7 +82,7 @@ namespace OpenGL.UI.Controls
             this.dropDownToggle.RelativeTo = Corner.TopRight;
             this.AddElement(dropDownToggle);
 
-            this.dropDownBox = new TextBox(font, selectedLine);
+            this.dropDownBox = new TextBox(font, null, selectedLine);
             foreach (var item in items) dropDownBox.WriteLine(item);
             dropDownBox.CurrentLine = 0;
             this.dropDownBox.AllowSelection = true;

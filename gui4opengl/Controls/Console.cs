@@ -13,7 +13,7 @@ namespace OpenGL.UI.Controls
         public Console(BMFont font)
             : base(new Point(0, 0), new Point(500, 300), "Console" + UserInterface.GetUniqueElementID())
         {
-            textBox = new TextBox(font);
+            textBox = new TextBox(font, null);
             textBox.RelativeTo = Corner.TopLeft;
             textBox.BackgroundColor = new Vector4(0, 0, 0, 0.5f);
             textBox.AllowScrollBar = true;
