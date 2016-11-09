@@ -158,7 +158,8 @@ slider.LockToSteps = true;
 In this example we create two simple CheckBox controls.  They're pretty simple, and use two textures - one for the 'checked' state, and one for the 'unchecked' state.  Here's the relevant code:
 
 ```csharp
-OpenGL.UI.Controls.CheckBox checkbox1 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me!");
+OpenGL.UI.Controls.CheckBox checkbox1 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, 
+    OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me!");
 checkbox1.RelativeTo = OpenGL.UI.Corner.Center;
 checkbox1.Position = new OpenGL.UI.Point(-50, 12);
 checkbox1.OnCheckedChanged = (sender, e) => checkbox1.Text = (checkbox1.Checked ? "Thanks!" : "Check Me!");
@@ -170,7 +171,8 @@ checkbox1.OnCheckedChanged = (sender, e) => checkbox1.Text = (checkbox1.Checked 
 In this example we create a TextBox control.  The TextBox control has a lot of functionality, including word wrapping, color, scrollbar support and more.  Here's the code to create a TextBox:
 
 ```csharp
-OpenGL.UI.Controls.TextBox textBox = new OpenGL.UI.Controls.TextBox(OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), scrollTexture);
+OpenGL.UI.Controls.TextBox textBox = new OpenGL.UI.Controls.TextBox(
+    OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), scrollTexture);
 textBox.RelativeTo = OpenGL.UI.Corner.Center;
 textBox.Size = new OpenGL.UI.Point(400, 200);
 ```
