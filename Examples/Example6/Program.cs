@@ -24,7 +24,7 @@ namespace Example6
             // initialize the user interface
             OpenGL.UI.UserInterface.InitUI(Window.Width, Window.Height);
 
-            // create a slider with a specified texture
+            // create a checkbox with a specified texture
             checkBoxTexture = new Texture("data/checkBox.png");
             checkBoxCheckedTexture = new Texture("data/checkBoxChecked.png");
 
@@ -38,7 +38,7 @@ namespace Example6
             checkbox2.Position = new OpenGL.UI.Point(-50, -12);
             checkbox2.OnCheckedChanged = (sender, e) => checkbox2.Text = (checkbox2.Checked ? "Thanks!" : "Check Me Too!");
 
-            // add both the slider and text controls to the UI
+            // add both checkbox controls to the user interface
             OpenGL.UI.UserInterface.AddElement(checkbox1);
             OpenGL.UI.UserInterface.AddElement(checkbox2);
 

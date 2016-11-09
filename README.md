@@ -163,3 +163,24 @@ checkbox1.RelativeTo = OpenGL.UI.Corner.Center;
 checkbox1.Position = new OpenGL.UI.Point(-50, 12);
 checkbox1.OnCheckedChanged = (sender, e) => checkbox1.Text = (checkbox1.Checked ? "Thanks!" : "Check Me!");
 ```
+
+### Example 7
+![Example 7](https://giawa.github.com/ui/example7.png)
+
+In this example we create a TextBox control.  The TextBox control has a lot of functionality, including word wrapping, color, scrollbar support and more.  Here's the code to create a TextBox:
+
+```csharp
+OpenGL.UI.Controls.TextBox textBox = new OpenGL.UI.Controls.TextBox(OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), scrollTexture);
+textBox.RelativeTo = OpenGL.UI.Corner.Center;
+textBox.Size = new OpenGL.UI.Point(400, 200);
+```
+
+You can then write as many lines as you would like (within reason) to the TextBox:
+
+```csharp
+textBox.WriteLine("Hello!");
+textBox.WriteLine("This is a textbox, and it supports automatic word wrapping!");
+textBox.WriteLine(new Vector3(0.5f, 0.7f, 1.0f), "It also supports colors!");
+```
+
+![Example 7 Animated](https://giawa.github.com/ui/example7.gif)
