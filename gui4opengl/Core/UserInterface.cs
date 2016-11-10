@@ -163,6 +163,15 @@ namespace OpenGL.UI
             set { lmousePosition = value; }
         }
 
+        /// <summary>
+        /// The current object that has focus (the last object clicked).
+        /// </summary>
+        public static IMouseInput Focus 
+        { 
+            get; 
+            set; 
+        }
+
         public static bool OnMouseMove(int x, int y)
         {
             UIElement lastSelection = currentSelection;
@@ -187,6 +196,13 @@ namespace OpenGL.UI
         public static bool OnMouseClick(int button, int state, int x, int y)
         {
             MousePosition = new Click(x, y, (MouseButton)button, (MouseState)state);
+
+            // call OnLoseFocus if a control lost focus
+            if (MousePosition.state == MouseState.Down)
+            {
+                if (Focus != null && currentSelection != Focus && Focus.OnLoseFocus != null) Focus.OnLoseFocus(null, currentSelection);
+                Focus = currentSelection;
+            }
 
             if (activeSelection != null && MousePosition.state == MouseState.Up)
             {
