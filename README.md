@@ -201,3 +201,17 @@ listBox.Invalidate();
 ```
 
 ![Example 8 Animated](https://giawa.github.com/ui/example8.gif)
+
+### Example 9
+![Example 9](https://giawa.github.com/ui/example9.png)
+
+In this example we create a TextInput and some labelling text.  If a user clicks the TextInput to get focus then all keyboard presses will be routed to the TextInput.  For now the Input class has been included with OpenGL.UI, but it will be probably pulled into its own OpenGL.Input or OpenGL.Platform namespace in the future.
+
+```csharp
+// create a text input control
+OpenGL.UI.Controls.TextInput textInput = new OpenGL.UI.Controls.TextInput(OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"));
+textInput.Size = new OpenGL.UI.Point(300, 20);
+textInput.RelativeTo = OpenGL.UI.Corner.Center;
+```
+
+![Example 9 Animated](https://giawa.github.com/ui/example9.gif)
