@@ -262,9 +262,9 @@ namespace OpenGL.UI
                 else if (RelativeTo == Corner.TopRight)
                     CorrectedPosition = new Point(UserInterface.Width - Position.x - Size.x, -Position.y - Size.y);
                 else if (RelativeTo == Corner.Bottom)
-                    CorrectedPosition = new Point(UserInterface.Width / 2 + Position.x, Position.y);
+                    CorrectedPosition = new Point(UserInterface.Width / 2 - Size.x / 2 + Position.x, Position.y);
                 else if (RelativeTo == Corner.Top)
-                    CorrectedPosition = new Point(UserInterface.Width / 2 + Position.x, -Position.y - Size.y);
+                    CorrectedPosition = new Point(UserInterface.Width / 2 - Size.x / 2 + Position.x, -Position.y - Size.y);
                 else if (RelativeTo == Corner.Center)
                     CorrectedPosition = new Point(UserInterface.Width / 2 - Size.x / 2 + Position.x, UserInterface.Height / 2 - Size.y / 2 + Position.y);
             }
@@ -278,9 +278,9 @@ namespace OpenGL.UI
                 else if (RelativeTo == Corner.TopRight)
                     CorrectedPosition = new Point(Parent.Size.x - Position.x - Size.x, Parent.Size.y - Position.y - Size.y);
                 else if (RelativeTo == Corner.Bottom)
-                    CorrectedPosition = new Point(Parent.Size.x / 2 + Position.x, Position.y);
+                    CorrectedPosition = new Point(Parent.Size.x / 2 - Size.x / 2 + Position.x, Position.y);
                 else if (RelativeTo == Corner.Top)
-                    CorrectedPosition = new Point(Parent.Size.x / 2 + Position.x, Parent.Size.y - Position.y);
+                    CorrectedPosition = new Point(Parent.Size.x / 2 - Size.x / 2 + Position.x, Parent.Size.y - Position.y - Size.y);
                 else if (RelativeTo == Corner.Fill)
                 {
                     CorrectedPosition = new Point(0, 0);
