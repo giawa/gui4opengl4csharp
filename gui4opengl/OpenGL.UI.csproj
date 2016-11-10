@@ -47,7 +47,8 @@
     <Compile Include="Controls\Slider.cs" />
     <Compile Include="Controls\Text.cs" />
     <Compile Include="Controls\TextBox.cs" />
-    <Compile Include="Controls\TextEntry.cs" />
+    <Compile Include="Controls\TextInput.cs" />
+    <Compile Include="Core\Input.cs" />
     <Compile Include="Core\MouseEvent.cs" />
     <Compile Include="Core\Point.cs" />
     <Compile Include="Core\Shaders.cs" />
