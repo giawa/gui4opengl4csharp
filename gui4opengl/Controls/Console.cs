@@ -8,7 +8,7 @@ namespace OpenGL.UI.Controls
     public class Console : UIContainer
     {
         private TextBox textBox;
-        private TextEntry textEntry;
+        private TextInput textEntry;
 
         public Console(BMFont font)
             : base(new Point(0, 0), new Point(500, 300), "Console" + UserInterface.GetUniqueElementID())
@@ -19,12 +19,12 @@ namespace OpenGL.UI.Controls
             textBox.AllowScrollBar = true;
             this.AddElement(textBox);
 
-            textEntry = new TextEntry(font);
+            textEntry = new TextInput(font);
             textEntry.RelativeTo = Corner.BottomLeft;
             textEntry.BackgroundColor = new Vector4(0, 0, 0, 0.7f);
             this.AddElement(textEntry);
 
-            textEntry.OnCarriageReturn = new TextEntry.OnTextEvent(ExecuteCommand);
+            textEntry.OnCarriageReturn = new TextInput.OnTextEvent(ExecuteCommand);
         }
 
         public override void OnResize()
@@ -39,7 +39,7 @@ namespace OpenGL.UI.Controls
 
         public Dictionary<string, OnCommand> commands = new Dictionary<string, OnCommand>();
 
-        private void ExecuteCommand(TextEntry entry, string command)
+        private void ExecuteCommand(TextInput entry, string command)
         {
             if (command.Length == 0) return;
             entry.Clear();

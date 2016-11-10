@@ -4,7 +4,7 @@ using OpenGL;
 
 namespace OpenGL.UI.Controls
 {
-    public class TextEntry : UIContainer
+    public class TextInput : UIContainer
     {
         #region Variables
         private Text text;
@@ -17,7 +17,7 @@ namespace OpenGL.UI.Controls
         /// </summary>
         /// <param name="entry">The TextEntry that received the carriage return signal.</param>
         /// <param name="text">The text contained in the TextEntry when the carriage return signal was received.</param>
-        public delegate void OnTextEvent(TextEntry entry, string text);
+        public delegate void OnTextEvent(TextInput entry, string text);
 
         /// <summary>
         /// Event is called when the carriage return button (Enter on most keyboards) is pressed.
@@ -39,7 +39,7 @@ namespace OpenGL.UI.Controls
         #endregion
 
         #region Constructor
-        public TextEntry(BMFont font, string s = "")
+        public TextInput(BMFont font, string s = "")
             : base(new Point(0, 0), new Point(200, font.Height), "TextEntry" + UserInterface.GetUniqueElementID())
         {
             text = new Text(Shaders.FontShader, font, s, BMFont.Justification.Left);
@@ -54,7 +54,7 @@ namespace OpenGL.UI.Controls
                     hasFocus = true;
 
                     // take control of the key bindings
-                    /*Input.PushKeyBindings();
+                    Input.PushKeyBindings();
 
                     Input.SubscribeAll(new Event((key, state) =>
                         {
@@ -91,7 +91,7 @@ namespace OpenGL.UI.Controls
                             hasFocus = false;
 
                             Input.PopKeyBindings();
-                        });*/          
+                        }); 
                 });
 
             this.AddElement(text);
