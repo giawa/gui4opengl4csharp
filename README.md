@@ -186,3 +186,17 @@ textBox.WriteLine(new Vector3(0.5f, 0.7f, 1.0f), "It also supports colors!");
 ```
 
 ![Example 7 Animated](https://giawa.github.com/ui/example7.gif)
+
+### Example 8
+![Example 8](https://giawa.github.com/ui/example8.png)
+
+In this example we create a ListBox control, which allows for a drop-down TextBox control and selection of one of multiple elements.  I'd still like to improve the functionality of this control.  However, the basic functionality works!  It's also pretty easy to drop into your user interface.  Here's the relevant code:
+
+```csharp
+OpenGL.UI.Controls.ListBox listBox = new OpenGL.UI.Controls.ListBox(scrollTexture, scrollTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), new string[] { "Item 1", "Item 2", "Item 3" });
+listBox.RelativeTo = OpenGL.UI.Corner.Center;
+listBox.Size = new OpenGL.UI.Point(200, 20);
+listBox.Invalidate();
+```
+
+![Example 8 Animated](https://giawa.github.com/ui/example8.gif)
