@@ -9,7 +9,7 @@ namespace Example8
 
         static void Main()
         {
-            Window.CreateWindow("OpenGL UI: Example 8", 1280 / 2, 720 / 2);
+            Window.CreateWindow("OpenGL UI: Example 8", 1280, 720);
 
             // add a reshape callback to update the UI
             Window.OnReshapeCallbacks.Add(() => OpenGL.UI.UserInterface.OnResize(Window.Width, Window.Height));
