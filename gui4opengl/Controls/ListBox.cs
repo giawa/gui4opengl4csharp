@@ -71,18 +71,20 @@ namespace OpenGL.UI.Controls
         /// and some text to display the currently selected line.
         /// </summary>
         /// <param name="dropDownIcon">The icon to use to the right of the text for displaying the textbox.</param>
+        /// <param name="scrollTexture">The icon to use for the scroll bar.</param>
         /// <param name="font">The font to use for both the textbox and the text.</param>
         /// <param name="items">The items to place in the textbox.</param>
         /// <param name="selectedLine">The default selected line for the textbox.</param>
-        public ListBox(Texture dropDownIcon, BMFont font, string[] items, int selectedLine = 0)
+        public ListBox(Texture dropDownIcon, Texture scrollTexture, BMFont font, string[] items, int selectedLine = 0)
         {
             this.items = items;
 
             this.dropDownToggle = new Button(dropDownIcon);
             this.dropDownToggle.RelativeTo = Corner.TopRight;
+            this.dropDownToggle.Position = new Point(0, (this.Size.y - this.dropDownToggle.Size.y)/ 2);
             this.AddElement(dropDownToggle);
 
-            this.dropDownBox = new TextBox(font, null, selectedLine);
+            this.dropDownBox = new TextBox(font, scrollTexture, selectedLine);
             foreach (var item in items) dropDownBox.WriteLine(item);
             dropDownBox.CurrentLine = 0;
             this.dropDownBox.AllowSelection = true;
@@ -137,10 +139,12 @@ namespace OpenGL.UI.Controls
             base.Invalidate();
 
             int numLines = Math.Min(items.Length, 4);
-            dropDownBox.BackgroundColor = new Vector4(1, 0, 0, 1);
             dropDownBox.RelativeTo = this.RelativeTo;
             dropDownBox.Size = new Point(this.Size.x - 8, (int)Math.Round(font.Height * numLines * 1.2));
             dropDownBox.Position = new Point(this.Position.x, this.Position.y + this.Size.y);
+
+            if (dropDownBox.RelativeTo == Corner.Center) dropDownBox.Position = new Point(dropDownBox.Position.x, (-this.Size.y - dropDownBox.Size.y) / 2);
+            this.dropDownToggle.Position = new Point(0, (this.Size.y - this.dropDownToggle.Size.y) / 2);
         }
         #endregion
     }

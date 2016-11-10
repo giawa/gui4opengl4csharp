@@ -127,7 +127,7 @@ namespace OpenGL.UI.Controls
             set
             {
                 selectedLine = value;
-                //if (OnSelectionChanged != null) OnSelectionChanged(this, new MouseEventArgs(Input.MousePosition, Input.LastMousePosition));
+                if (OnSelectionChanged != null) OnSelectionChanged(this, new MouseEventArgs());
             }
         }
 
