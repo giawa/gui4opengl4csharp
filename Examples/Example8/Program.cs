@@ -37,6 +37,9 @@ namespace Example8
             // add the list box to the user interface
             OpenGL.UI.UserInterface.AddElement(listBox);
 
+            // subscribe the escape event using the OpenGL.UI class library
+            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+
             while (true)
             {
                 Window.HandleEvents();

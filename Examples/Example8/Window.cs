@@ -250,13 +250,39 @@ namespace Example8
         #endregion
 
         #region Keyboard Callbacks
+        private static bool lshift, lctrl, lalt;
+        private static bool rshift, rctrl, ralt;
+
         private static void OnKeyboardDown(SDL.SDL_Keycode sym)
         {
-            if (sym == SDL.SDL_Keycode.SDLK_ESCAPE) OnClose();
+            // send all keyboard events to the OpenGL.UI.Input static class
+            if (sym == SDL.SDL_Keycode.SDLK_LSHIFT) lshift = true;
+            else if (sym == SDL.SDL_Keycode.SDLK_RSHIFT) rshift = true;
+            else if (sym == SDL.SDL_Keycode.SDLK_LCTRL) lctrl = true;
+            else if (sym == SDL.SDL_Keycode.SDLK_RCTRL) rctrl = true;
+            else if (sym == SDL.SDL_Keycode.SDLK_LALT) lalt = true;
+            else if (sym == SDL.SDL_Keycode.SDLK_RALT) ralt = true;
+            else if (sym == SDL.SDL_Keycode.SDLK_LEFT) OpenGL.UI.Input.AddKey((char)0, lshift || rshift, lctrl || rctrl, lalt || ralt);
+            else if (sym == SDL.SDL_Keycode.SDLK_RIGHT) OpenGL.UI.Input.AddKey((char)1, lshift || rshift, lctrl || rctrl, lalt || ralt);
+            else if (sym == SDL.SDL_Keycode.SDLK_UP) OpenGL.UI.Input.AddKey((char)2, lshift || rshift, lctrl || rctrl, lalt || ralt);
+            else if (sym == SDL.SDL_Keycode.SDLK_DOWN) OpenGL.UI.Input.AddKey((char)3, lshift || rshift, lctrl || rctrl, lalt || ralt);
+            else OpenGL.UI.Input.AddKey((char)sym, lshift || rshift, lctrl || rctrl, lalt || ralt);
         }
 
         private static void OnKeyboardUp(SDL.SDL_Keycode sym)
         {
+            // send all keyboard events to the OpenGL.UI.Input static class
+            if (sym == SDL.SDL_Keycode.SDLK_LSHIFT) lshift = false;
+            else if (sym == SDL.SDL_Keycode.SDLK_RSHIFT) rshift = false;
+            else if (sym == SDL.SDL_Keycode.SDLK_LCTRL) lctrl = false;
+            else if (sym == SDL.SDL_Keycode.SDLK_RCTRL) rctrl = false;
+            else if (sym == SDL.SDL_Keycode.SDLK_LALT) lalt = false;
+            else if (sym == SDL.SDL_Keycode.SDLK_RALT) ralt = false;
+            else if (sym == SDL.SDL_Keycode.SDLK_LEFT) OpenGL.UI.Input.RemoveKey((char)0);
+            else if (sym == SDL.SDL_Keycode.SDLK_RIGHT) OpenGL.UI.Input.RemoveKey((char)1);
+            else if (sym == SDL.SDL_Keycode.SDLK_UP) OpenGL.UI.Input.RemoveKey((char)2);
+            else if (sym == SDL.SDL_Keycode.SDLK_DOWN) OpenGL.UI.Input.RemoveKey((char)3);
+            else OpenGL.UI.Input.RemoveKey((char)sym);
         }
         #endregion
     }

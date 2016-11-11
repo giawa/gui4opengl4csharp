@@ -45,6 +45,9 @@ namespace Example3
             OpenGL.UI.UserInterface.AddElement(gradient);
             OpenGL.UI.UserInterface.AddElement(hue);
 
+            // subscribe the escape event using the OpenGL.UI class library
+            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+
             while (true)
             {
                 Window.HandleEvents();

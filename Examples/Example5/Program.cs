@@ -43,6 +43,9 @@ namespace Example5
             OpenGL.UI.UserInterface.AddElement(slider);
             OpenGL.UI.UserInterface.AddElement(text);
 
+            // subscribe the escape event using the OpenGL.UI class library
+            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+
             while (true)
             {
                 Window.HandleEvents();

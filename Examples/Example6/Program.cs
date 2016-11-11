@@ -42,6 +42,9 @@ namespace Example6
             OpenGL.UI.UserInterface.AddElement(checkbox1);
             OpenGL.UI.UserInterface.AddElement(checkbox2);
 
+            // subscribe the escape event using the OpenGL.UI class library
+            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+
             while (true)
             {
                 Window.HandleEvents();
