@@ -215,3 +215,19 @@ textInput.RelativeTo = OpenGL.UI.Corner.Center;
 ```
 
 ![Example 9 Animated](https://giawa.github.com/ui/example9.gif)
+
+### Example 10
+![Example 10](https://giawa.github.com/ui/example10.png)
+
+In this tutorial we create two containers, and then fill those containers with some other controls.  Finally, we add a divider that will allow the containers to be resized.  By setting the RelativeTo property to Fill, the TextBox on the left will automatically resize.  For the Buttons on the right we must resize them manually, but by setting their RelativeTo property to Center it is still pretty easy.
+
+```csharp
+// create the left and right containers
+OpenGL.UI.UIContainer leftContainer = new OpenGL.UI.UIContainer(new OpenGL.UI.Point(Window.Width / 2, Window.Height), "LeftContainer");
+OpenGL.UI.UIContainer rightContainer = new OpenGL.UI.UIContainer(new OpenGL.UI.Point(Window.Width / 2, Window.Height), "RightContainer");
+
+leftContainer.RelativeTo = OpenGL.UI.Corner.BottomLeft;
+rightContainer.RelativeTo = OpenGL.UI.Corner.BottomRight;
+```
+
+![Example 10 Animated](https://giawa.github.com/ui/example10.gif)
