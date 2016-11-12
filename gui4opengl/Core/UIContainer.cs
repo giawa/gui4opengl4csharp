@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using OpenGL.Platform;
+
 namespace OpenGL.UI
 {
     public class UIContainer : UIElement

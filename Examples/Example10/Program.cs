@@ -1,5 +1,7 @@
 ﻿using System;
+
 using OpenGL;
+using OpenGL.Platform;
 
 namespace Example10
 {
@@ -27,8 +29,8 @@ namespace Example10
             OpenGL.UI.UserInterface.InitUI(Window.Width, Window.Height);
 
             // create the left and right containers
-            leftContainer = new OpenGL.UI.UIContainer(new OpenGL.UI.Point(Window.Width / 2, Window.Height), "LeftContainer");
-            rightContainer = new OpenGL.UI.UIContainer(new OpenGL.UI.Point(Window.Width / 2, Window.Height), "RightContainer");
+            leftContainer = new OpenGL.UI.UIContainer(new Point(Window.Width / 2, Window.Height), "LeftContainer");
+            rightContainer = new OpenGL.UI.UIContainer(new Point(Window.Width / 2, Window.Height), "RightContainer");
 
             leftContainer.RelativeTo = OpenGL.UI.Corner.BottomLeft;
             rightContainer.RelativeTo = OpenGL.UI.Corner.BottomRight;
@@ -44,7 +46,7 @@ namespace Example10
             OpenGL.UI.Controls.TextBox textBox = new OpenGL.UI.Controls.TextBox(OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), scrollTexture);
             textBox.Write("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget vehicula orci. Nulla nibh nulla, suscipit non neque sed, placerat efficitur velit. Sed convallis gravida tincidunt. Praesent vehicula nibh leo, at consequat nisi condimentum ullamcorper. Vivamus pulvinar accumsan maximus. Integer luctus elit porttitor nisi sollicitudin, eget porttitor odio tincidunt. Sed elit justo, suscipit non dui ut, eleifend euismod nibh. Nullam ac fermentum nisl. In convallis id leo sit amet eleifend. Suspendisse eu ligula pulvinar ex facilisis cursus ac ac velit. In ut turpis nec neque vehicula eleifend. Morbi in tempus est. Vivamus nisi nunc, pharetra quis scelerisque ut, tempor id dui.");
             textBox.RelativeTo = OpenGL.UI.Corner.Fill;
-            textBox.Padding = new OpenGL.UI.Point(6, 0);
+            textBox.Padding = new Point(6, 0);
             leftContainer.AddElement(textBox);
             textBox.OnResize();
 
@@ -55,7 +57,7 @@ namespace Example10
                 button.Font = OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt");
                 button.Text = string.Format("Button {0}", i);
                 button.RelativeTo = OpenGL.UI.Corner.Center;
-                button.Position = new OpenGL.UI.Point(0, 200 - i * 40);
+                button.Position = new Point(0, 200 - i * 40);
                 rightContainer.AddElement(button);
                 button.OnResize();
 
@@ -67,7 +69,7 @@ namespace Example10
             divider = new OpenGL.UI.Controls.Button(8, Window.Height);
             divider.BackgroundColor = new Vector4(0.3f, 0.3f, 0.3f, 0.5f);
             divider.RelativeTo = OpenGL.UI.Corner.BottomLeft;
-            divider.Position = new OpenGL.UI.Point(Window.Width / 2 - divider.Size.x / 2, 0);
+            divider.Position = new Point(Window.Width / 2 - divider.Size.x / 2, 0);
 
             bool onMouseDown = false;
 
@@ -86,7 +88,11 @@ namespace Example10
             OpenGL.UI.UserInterface.AddElement(divider);
 
             // subscribe the escape event using the OpenGL.UI class library
-            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+            Input.Subscribe((char)27, Window.OnClose);
+
+            // make sure to set up mouse event handlers for the window
+            Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
+            Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
 
             while (true)
             {
@@ -101,16 +107,16 @@ namespace Example10
             x = Math.Min(Window.Width - 110, x);
 
             // set the position of the divider
-            divider.Position = new OpenGL.UI.Point(x, divider.Position.y);
+            divider.Position = new Point(x, divider.Position.y);
 
             // update the container sizes
             x += divider.Size.x / 2;
-            leftContainer.Size = new OpenGL.UI.Point(x, Window.Height);
-            rightContainer.Size = new OpenGL.UI.Point(Window.Width - x, Window.Height);
+            leftContainer.Size = new Point(x, Window.Height);
+            rightContainer.Size = new Point(Window.Width - x, Window.Height);
 
             // resize the buttons to make them fit in the right container
             foreach (var button in rightContainer.Elements)
-                button.Size = new OpenGL.UI.Point(Math.Min(200, rightContainer.Size.x - 16), 30);
+                button.Size = new Point(Math.Min(200, rightContainer.Size.x - 16), 30);
 
             OpenGL.UI.UserInterface.UIWindow.OnResize();
         }

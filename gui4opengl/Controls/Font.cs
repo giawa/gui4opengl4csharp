@@ -284,8 +284,8 @@ namespace OpenGL.UI.Controls
             CreateStringInternal(text, color, justification, scale);
 
             // simply update the underlying VBOs (indices shouldn't be modified)
-            Utilities.BufferSubData(vao.vbos[0].vboID, BufferTarget.ArrayBuffer, vertices, text.Length * 4);
-            Utilities.BufferSubData(vao.vbos[1].vboID, BufferTarget.ArrayBuffer, uvs, text.Length * 4);
+            Gl.BufferSubData(vao.vbos[0].vboID, BufferTarget.ArrayBuffer, vertices, text.Length * 4);
+            Gl.BufferSubData(vao.vbos[1].vboID, BufferTarget.ArrayBuffer, uvs, text.Length * 4);
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
 ﻿using System;
+
 using OpenGL;
+using OpenGL.Platform;
 
 namespace Example7
 {
@@ -30,7 +32,7 @@ namespace Example7
             // create a textbox
             OpenGL.UI.Controls.TextBox textBox = new OpenGL.UI.Controls.TextBox(OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), scrollTexture);
             textBox.RelativeTo = OpenGL.UI.Corner.Center;
-            textBox.Size = new OpenGL.UI.Point(400, 200);
+            textBox.Size = new Point(400, 200);
             textBox.BackgroundColor = new Vector4(0.3f, 0.3f, 0.3f, 1.0f);
 
             // put a bunch of text into the textbox
@@ -51,7 +53,11 @@ namespace Example7
             OpenGL.UI.UserInterface.AddElement(textBox);
 
             // subscribe the escape event using the OpenGL.UI class library
-            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+            Input.Subscribe((char)27, Window.OnClose);
+
+            // make sure to set up mouse event handlers for the window
+            Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
+            Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
 
             while (true)
             {

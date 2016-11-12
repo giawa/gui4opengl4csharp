@@ -1,5 +1,7 @@
 ﻿using System;
+
 using OpenGL;
+using OpenGL.Platform;
 
 namespace Example6
 {
@@ -30,12 +32,12 @@ namespace Example6
 
             OpenGL.UI.Controls.CheckBox checkbox1 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me!");
             checkbox1.RelativeTo = OpenGL.UI.Corner.Center;
-            checkbox1.Position = new OpenGL.UI.Point(-50, 12);
+            checkbox1.Position = new Point(-50, 12);
             checkbox1.OnCheckedChanged = (sender, e) => checkbox1.Text = (checkbox1.Checked ? "Thanks!" : "Check Me!");
 
             OpenGL.UI.Controls.CheckBox checkbox2 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me Too!");
             checkbox2.RelativeTo = OpenGL.UI.Corner.Center;
-            checkbox2.Position = new OpenGL.UI.Point(-50, -12);
+            checkbox2.Position = new Point(-50, -12);
             checkbox2.OnCheckedChanged = (sender, e) => checkbox2.Text = (checkbox2.Checked ? "Thanks!" : "Check Me Too!");
 
             // add both checkbox controls to the user interface
@@ -43,7 +45,11 @@ namespace Example6
             OpenGL.UI.UserInterface.AddElement(checkbox2);
 
             // subscribe the escape event using the OpenGL.UI class library
-            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+            Input.Subscribe((char)27, Window.OnClose);
+
+            // make sure to set up mouse event handlers for the window
+            Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
+            Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
 
             while (true)
             {

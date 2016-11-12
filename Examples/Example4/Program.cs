@@ -1,5 +1,7 @@
 ﻿using System;
+
 using OpenGL;
+using OpenGL.Platform;
 
 namespace Example4
 {
@@ -26,8 +28,8 @@ namespace Example4
 
             // create a container that will store all of our color picker content
             OpenGL.UI.UIContainer colorPickerContainer = new OpenGL.UI.UIContainer();
-            colorPickerContainer.Size = new OpenGL.UI.Point(240, 190);
-            colorPickerContainer.Position = new OpenGL.UI.Point(20, 20);
+            colorPickerContainer.Size = new Point(240, 190);
+            colorPickerContainer.Position = new Point(20, 20);
             colorPickerContainer.RelativeTo = OpenGL.UI.Corner.TopLeft;
 
             // create a menu bar that will have two different textures
@@ -40,7 +42,7 @@ namespace Example4
             // place some text within the menu bar
             OpenGL.UI.Controls.Text menuText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._12pt, "Color Picker");
             menuText.RelativeTo = OpenGL.UI.Corner.TopLeft;
-            menuText.Position = new OpenGL.UI.Point(4, 17);
+            menuText.Position = new Point(4, 17);
             colorPickerContainer.AddElement(menuText);
 
             // add some events that will move the entire color picker container with the menu bar
@@ -61,18 +63,18 @@ namespace Example4
                     {
                         int x = colorPickerContainer.Position.x + OpenGL.UI.UserInterface.MousePosition.x - OpenGL.UI.UserInterface.LastMousePosition.x;
                         int y = colorPickerContainer.Position.y + OpenGL.UI.UserInterface.MousePosition.y - OpenGL.UI.UserInterface.LastMousePosition.y;
-                        colorPickerContainer.Position = new OpenGL.UI.Point(x, y);
+                        colorPickerContainer.Position = new Point(x, y);
                         colorPickerContainer.OnResize();
                     }
                 };
 
             // create the color picker itself
             OpenGL.UI.Controls.ColorGradient gradient = new OpenGL.UI.Controls.ColorGradient();
-            gradient.Position = new OpenGL.UI.Point(30, 30);
+            gradient.Position = new Point(30, 30);
 
             // and create a hue slider that can control the types of colors shown in the color picker
             OpenGL.UI.Controls.HueGradient hue = new OpenGL.UI.Controls.HueGradient();
-            hue.Position = new OpenGL.UI.Point(190, 30);
+            hue.Position = new Point(190, 30);
 
             // add the color picker and its hue slider to the UI
             colorPickerContainer.AddElement(gradient);
@@ -82,7 +84,11 @@ namespace Example4
             OpenGL.UI.UserInterface.AddElement(colorPickerContainer);
 
             // subscribe the escape event using the OpenGL.UI class library
-            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+            Input.Subscribe((char)27, Window.OnClose);
+
+            // make sure to set up mouse event handlers for the window
+            Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
+            Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
 
             while (true)
             {

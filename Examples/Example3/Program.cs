@@ -1,5 +1,7 @@
 ﻿using System;
+
 using OpenGL;
+using OpenGL.Platform;
 
 namespace Example3
 {
@@ -24,7 +26,7 @@ namespace Example3
 
             // create some centered text
             OpenGL.UI.Controls.Text selectText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._16pt, "Pick A Color:", OpenGL.UI.Controls.BMFont.Justification.Center);
-            selectText.Position = new OpenGL.UI.Point(0, 80);
+            selectText.Position = new Point(0, 80);
             selectText.RelativeTo = OpenGL.UI.Corner.Center;
 
             // add the two text object to the UI
@@ -33,20 +35,24 @@ namespace Example3
             // create the color picker itself
             OpenGL.UI.Controls.ColorGradient gradient = new OpenGL.UI.Controls.ColorGradient();
             gradient.RelativeTo = OpenGL.UI.Corner.Center;
-            gradient.Position = new OpenGL.UI.Point(-20, 0);
+            gradient.Position = new Point(-20, 0);
             gradient.OnColorChange = (sender, e) => selectText.Color = gradient.Color;
 
             // and create a hue slider that can control the types of colors shown in the color picker
             OpenGL.UI.Controls.HueGradient hue = new OpenGL.UI.Controls.HueGradient();
             hue.RelativeTo = OpenGL.UI.Corner.Center;
-            hue.Position = new OpenGL.UI.Point(80, 0);
+            hue.Position = new Point(80, 0);
 
             // add the color picker and its hue slider to the UI
             OpenGL.UI.UserInterface.AddElement(gradient);
             OpenGL.UI.UserInterface.AddElement(hue);
 
             // subscribe the escape event using the OpenGL.UI class library
-            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+            Input.Subscribe((char)27, Window.OnClose);
+
+            // make sure to set up mouse event handlers for the window
+            Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
+            Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
 
             while (true)
             {

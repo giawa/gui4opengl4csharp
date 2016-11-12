@@ -1,5 +1,7 @@
 ﻿using System;
+
 using OpenGL;
+using OpenGL.Platform;
 
 namespace Example5
 {
@@ -35,7 +37,7 @@ namespace Example5
             // create some text that will change with the slider position
             OpenGL.UI.Controls.Text text = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._16pt, "Value: 0");
             text.RelativeTo = OpenGL.UI.Corner.Center;
-            text.Position = new OpenGL.UI.Point(120, -text.TextSize.y / 2);
+            text.Position = new Point(120, -text.TextSize.y / 2);
 
             slider.OnValueChanged = (sender, e) => text.String = string.Format("Value: {0}", slider.Value);
 
@@ -44,7 +46,11 @@ namespace Example5
             OpenGL.UI.UserInterface.AddElement(text);
 
             // subscribe the escape event using the OpenGL.UI class library
-            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+            Input.Subscribe((char)27, Window.OnClose);
+
+            // make sure to set up mouse event handlers for the window
+            Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
+            Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
 
             while (true)
             {

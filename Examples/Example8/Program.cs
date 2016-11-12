@@ -1,5 +1,7 @@
 ﻿using System;
+
 using OpenGL;
+using OpenGL.Platform;
 
 namespace Example8
 {
@@ -30,7 +32,7 @@ namespace Example8
             // create a textbox
             OpenGL.UI.Controls.ListBox listBox = new OpenGL.UI.Controls.ListBox(scrollTexture, scrollTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), new string[] { "Item 1", "Item 2", "Item 3" });
             listBox.RelativeTo = OpenGL.UI.Corner.Center;
-            listBox.Size = new OpenGL.UI.Point(200, 20);
+            listBox.Size = new Point(200, 20);
             listBox.BackgroundColor = new Vector4(0.3f, 0.3f, 0.3f, 1.0f);
             listBox.Invalidate();
             
@@ -38,7 +40,11 @@ namespace Example8
             OpenGL.UI.UserInterface.AddElement(listBox);
 
             // subscribe the escape event using the OpenGL.UI class library
-            OpenGL.UI.Input.Subscribe((char)27, Window.OnClose);
+            Input.Subscribe((char)27, Window.OnClose);
+
+            // make sure to set up mouse event handlers for the window
+            Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
+            Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
 
             while (true)
             {

@@ -36,12 +36,12 @@ namespace Example2
 
             // create some centered text
             OpenGL.UI.Controls.Text selectText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._24pt, "Select A Character", OpenGL.UI.Controls.BMFont.Justification.Center);
-            selectText.Position = new OpenGL.UI.Point(0, 50);
+            selectText.Position = new OpenGL.Platform.Point(0, 50);
             selectText.RelativeTo = OpenGL.UI.Corner.Center;
 
             OpenGL.UI.Controls.Text characterName = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._16pt, "", OpenGL.UI.Controls.BMFont.Justification.Center);
             characterName.RelativeTo = OpenGL.UI.Corner.Center;
-            characterName.Position = new OpenGL.UI.Point(0, -70);
+            characterName.Position = new OpenGL.Platform.Point(0, -70);
 
             // add the two text object to the UI
             OpenGL.UI.UserInterface.AddElement(selectText);
@@ -61,7 +61,7 @@ namespace Example2
 
                 // create buttons in a row, each of which uses a Texture (the Texture gives the initial size of the Button in pixels)
                 OpenGL.UI.Controls.Button button = new OpenGL.UI.Controls.Button(textures[i]);
-                button.Position = new OpenGL.UI.Point(xoffset, 5);
+                button.Position = new OpenGL.Platform.Point(xoffset, 5);
                 button.RelativeTo = OpenGL.UI.Corner.Center;
 
                 // change the color of the button when entering/leaving/clicking with the mouse

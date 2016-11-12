@@ -40,6 +40,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>libs\OpenGL.dll</HintPath>
     </Reference>
+    <Reference Include="OpenGL.Platform">
+      <HintPath>libs\OpenGL.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Tao.FreeGlut, Version=2.4.0.2, Culture=neutral, PublicKeyToken=6e602a6ad6c0d06d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

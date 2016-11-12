@@ -34,6 +34,9 @@
     <Reference Include="OpenGL">
       <HintPath>libs\OpenGL.dll</HintPath>
     </Reference>
+    <Reference Include="OpenGL.Platform">
+      <HintPath>libs\OpenGL.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
@@ -48,14 +51,10 @@
     <Compile Include="Controls\Text.cs" />
     <Compile Include="Controls\TextBox.cs" />
     <Compile Include="Controls\TextInput.cs" />
-    <Compile Include="Core\Input.cs" />
-    <Compile Include="Core\MouseEvent.cs" />
-    <Compile Include="Core\Point.cs" />
     <Compile Include="Core\Shaders.cs" />
     <Compile Include="Core\UIContainer.cs" />
     <Compile Include="Core\UIElement.cs" />
     <Compile Include="Core\UserInterface.cs" />
-    <Compile Include="Core\Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
