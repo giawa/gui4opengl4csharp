@@ -17,6 +17,11 @@ namespace OpenGL.UI
                 foreach (UIElement pElement in elements) pElement.Name = base.Name + pElement.GetType();
             }
         }
+
+        public List<UIElement> Elements
+        {
+            get { return elements; }
+        }
         #endregion
 
         #region Constructor
