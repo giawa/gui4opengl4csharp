@@ -209,7 +209,8 @@ In this example we create a TextInput and some labelling text.  If a user clicks
 
 ```csharp
 // create a text input control
-OpenGL.UI.Controls.TextInput textInput = new OpenGL.UI.Controls.TextInput(OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"));
+OpenGL.UI.Controls.TextInput textInput = new OpenGL.UI.Controls.TextInput(
+    OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"));
 textInput.Size = new OpenGL.UI.Point(300, 20);
 textInput.RelativeTo = OpenGL.UI.Corner.Center;
 ```
@@ -223,8 +224,10 @@ In this tutorial we create two containers, and then fill those containers with s
 
 ```csharp
 // create the left and right containers
-OpenGL.UI.UIContainer leftContainer = new OpenGL.UI.UIContainer(new OpenGL.UI.Point(Window.Width / 2, Window.Height), "LeftContainer");
-OpenGL.UI.UIContainer rightContainer = new OpenGL.UI.UIContainer(new OpenGL.UI.Point(Window.Width / 2, Window.Height), "RightContainer");
+OpenGL.UI.UIContainer leftContainer = new OpenGL.UI.UIContainer(
+    new OpenGL.UI.Point(Window.Width / 2, Window.Height), "LeftContainer");
+OpenGL.UI.UIContainer rightContainer = new OpenGL.UI.UIContainer(
+    new OpenGL.UI.Point(Window.Width / 2, Window.Height), "RightContainer");
 
 leftContainer.RelativeTo = OpenGL.UI.Corner.BottomLeft;
 rightContainer.RelativeTo = OpenGL.UI.Corner.BottomRight;
