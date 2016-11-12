@@ -36,33 +36,10 @@ namespace OpenGL.UI.Controls
         private VAO selectedVAO;
 
         private bool dirty = false;
-        private int height, width;
         private int currentLine;
         #endregion
 
         #region Properties
-        /// <summary>
-        /// Sets the size (in pixels) of the textbox.
-        /// Note:  This will also resize the background, and will set the dirty flag.
-        /// So the text will be updated during the next call to Draw().
-        /// </summary>
-        public new Point Size
-        {
-            get { return base.Size; }
-            set
-            {
-                if (Size.x == value.x && Size.y == value.y) return;
-
-                base.Size = value;
-
-                width = value.x;
-                height = value.y;
-                MaximumLines = (int)Math.Round(height / (Font.Height * 1.2 + 1));
-
-                ParseText();
-            }
-        }
-
         /// <summary>
         /// The maximum number of lines of text that can be drawn into 
         /// this TextBox given the height and font size.
@@ -100,7 +77,7 @@ namespace OpenGL.UI.Controls
             set
             {
                 font = value;
-                MaximumLines = (int)Math.Round(height / (font.Height * 1.2 + 1));
+                MaximumLines = (int)Math.Round(Size.y / (font.Height * 1.2 + 1));
             }
         }
 
@@ -184,6 +161,8 @@ namespace OpenGL.UI.Controls
 
             scrollBar.OnResize();
         }
+
+        public Point Padding { get; set; }
         #endregion
 
         #region Constructor
@@ -241,6 +220,8 @@ namespace OpenGL.UI.Controls
         #region Build VAOs
         private void ParseText()
         {
+            MaximumLines = (int)Math.Round(Size.y / (Font.Height * 1.2 + 1));
+
             lines.Clear();
 
             List<TextBoxEntry> line = new List<TextBoxEntry>();
@@ -253,7 +234,7 @@ namespace OpenGL.UI.Controls
                 int w = text[i].Font.GetWidth(text[i].Text);
 
                 // check if the text simply fits
-                if (xpos + w <= width)
+                if (xpos + w + Padding.x * 2 <= Size.x)
                 {
                     line.Add(text[i]);
                     text[i].Position = xpos;
@@ -273,18 +254,20 @@ namespace OpenGL.UI.Controls
 
                     while (remaining.Length > 0)
                     {
-                        int maximumLength = 0, currentWidth = xpos;
+                        int maximumLength = 0, currentWidth = xpos + Padding.x * 2;
 
                         // find out where we have to chop the text to get it to fit
                         for (maximumLength = 0; maximumLength < remaining.Length; maximumLength++)
                         {
                             currentWidth += text[i].Font.GetWidth(remaining[maximumLength]);
-                            if (currentWidth > width)
+                            if (currentWidth > Size.x)
                             {
                                 maximumLength--;
                                 break;
                             }
                         }
+
+                        if (maximumLength <= 0) return;
 
                         // now search backwards for a space or tab
                         int actualBreakPoint = maximumLength;
@@ -469,7 +452,7 @@ namespace OpenGL.UI.Controls
                 {
                     if (v >= vaos.Count) break; // the VAO must not be up to date, avoid a crash here
                     
-                    vaos[v].CorrectedPosition = new Point(CorrectedPosition.x, (int)(CorrectedPosition.y - (1.2 * (i + 1) * Font.Height - Size.y)));
+                    vaos[v].CorrectedPosition = new Point(CorrectedPosition.x + Padding.x, (int)(CorrectedPosition.y - (1.2 * (i + 1) * Font.Height - Size.y)));
 
                     if (VisibleCharacters <= 0 || characterCount + vaos[v].String.Length <= VisibleCharacters)
                     {
