@@ -34,13 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OpenGL">
-      <HintPath>libs\OpenGL.dll</HintPath>
+      <HintPath>..\..\libs\OpenGL.dll</HintPath>
     </Reference>
     <Reference Include="OpenGL.Platform">
-      <HintPath>libs\OpenGL.Platform.dll</HintPath>
+      <HintPath>..\..\libs\OpenGL.Platform.dll</HintPath>
     </Reference>
     <Reference Include="SDL2-CS">
-      <HintPath>libs\SDL2-CS.dll</HintPath>
+      <HintPath>..\..\libs\SDL2-CS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -59,7 +59,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)\libs\*" "$(TargetDir)"
+    <PostBuildEvent>copy "$(ProjectDir)\..\..\libs\*" "$(TargetDir)"
 if not exist $(TargetDir)fonts mkdir $(TargetDir)fonts
 copy "$(ProjectDir)\fonts\*" "$(TargetDir)\fonts\"</PostBuildEvent>
   </PropertyGroup>
