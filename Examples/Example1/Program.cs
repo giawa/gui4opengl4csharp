@@ -34,11 +34,11 @@ namespace Example1
             OpenGL.UI.UserInterface.InitUI(width, height);
 
             // create some centered text
-            OpenGL.UI.Controls.Text welcome = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._24pt, "Welcome to OpenGL", OpenGL.UI.Controls.BMFont.Justification.Center);
+            OpenGL.UI.Text welcome = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._24pt, "Welcome to OpenGL", OpenGL.UI.BMFont.Justification.Center);
             welcome.RelativeTo = OpenGL.UI.Corner.Center;
 
             // create some colored text
-            OpenGL.UI.Controls.Text coloredText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._24pt, "using C#", OpenGL.UI.Controls.BMFont.Justification.Center);
+            OpenGL.UI.Text coloredText = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._24pt, "using C#", OpenGL.UI.BMFont.Justification.Center);
             coloredText.Position = new OpenGL.Platform.Point(0, -30);
             coloredText.Color = new Vector3(0.2f, 0.3f, 1f);
             coloredText.RelativeTo = OpenGL.UI.Corner.Center;
@@ -55,7 +55,7 @@ namespace Example1
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
         }
 
         private static void OnRenderFrame()

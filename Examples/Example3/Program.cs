@@ -25,7 +25,7 @@ namespace Example3
             OpenGL.UI.UserInterface.InitUI(Window.Width, Window.Height);
 
             // create some centered text
-            OpenGL.UI.Controls.Text selectText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._16pt, "Pick A Color:", OpenGL.UI.Controls.BMFont.Justification.Center);
+            OpenGL.UI.Text selectText = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._16pt, "Pick A Color:", OpenGL.UI.BMFont.Justification.Center);
             selectText.Position = new Point(0, 80);
             selectText.RelativeTo = OpenGL.UI.Corner.Center;
 
@@ -33,13 +33,13 @@ namespace Example3
             OpenGL.UI.UserInterface.AddElement(selectText);
 
             // create the color picker itself
-            OpenGL.UI.Controls.ColorGradient gradient = new OpenGL.UI.Controls.ColorGradient();
+            OpenGL.UI.ColorGradient gradient = new OpenGL.UI.ColorGradient();
             gradient.RelativeTo = OpenGL.UI.Corner.Center;
             gradient.Position = new Point(-20, 0);
             gradient.OnColorChange = (sender, e) => selectText.Color = gradient.Color;
 
             // and create a hue slider that can control the types of colors shown in the color picker
-            OpenGL.UI.Controls.HueGradient hue = new OpenGL.UI.Controls.HueGradient();
+            OpenGL.UI.HueGradient hue = new OpenGL.UI.HueGradient();
             hue.RelativeTo = OpenGL.UI.Corner.Center;
             hue.Position = new Point(80, 0);
 
@@ -65,7 +65,7 @@ namespace Example3
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
         }
 
         private static void OnRenderFrame()

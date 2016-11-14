@@ -30,7 +30,7 @@ namespace Example7
             scrollTexture = new Texture("data/scrollBar.png");
 
             // create a textbox
-            OpenGL.UI.Controls.TextBox textBox = new OpenGL.UI.Controls.TextBox(OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), scrollTexture);
+            OpenGL.UI.TextBox textBox = new OpenGL.UI.TextBox(OpenGL.UI.BMFont.LoadFont("fonts/font16.fnt"), scrollTexture);
             textBox.RelativeTo = OpenGL.UI.Corner.Center;
             textBox.Size = new Point(400, 200);
             textBox.BackgroundColor = new Vector4(0.3f, 0.3f, 0.3f, 1.0f);
@@ -70,7 +70,7 @@ namespace Example7
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
             scrollTexture.Dispose();
         }
 

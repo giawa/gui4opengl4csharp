@@ -35,11 +35,11 @@ namespace Example2
             OpenGL.UI.UserInterface.InitUI(width, height);
 
             // create some centered text
-            OpenGL.UI.Controls.Text selectText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._24pt, "Select A Character", OpenGL.UI.Controls.BMFont.Justification.Center);
+            OpenGL.UI.Text selectText = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._24pt, "Select A Character", OpenGL.UI.BMFont.Justification.Center);
             selectText.Position = new OpenGL.Platform.Point(0, 50);
             selectText.RelativeTo = OpenGL.UI.Corner.Center;
 
-            OpenGL.UI.Controls.Text characterName = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._16pt, "", OpenGL.UI.Controls.BMFont.Justification.Center);
+            OpenGL.UI.Text characterName = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._16pt, "", OpenGL.UI.BMFont.Justification.Center);
             characterName.RelativeTo = OpenGL.UI.Corner.Center;
             characterName.Position = new OpenGL.Platform.Point(0, -70);
 
@@ -60,7 +60,7 @@ namespace Example2
                 textures[i] = new Texture(string.Format("data/{0}", character));
 
                 // create buttons in a row, each of which uses a Texture (the Texture gives the initial size of the Button in pixels)
-                OpenGL.UI.Controls.Button button = new OpenGL.UI.Controls.Button(textures[i]);
+                OpenGL.UI.Button button = new OpenGL.UI.Button(textures[i]);
                 button.Position = new OpenGL.Platform.Point(xoffset, 5);
                 button.RelativeTo = OpenGL.UI.Corner.Center;
 
@@ -86,7 +86,7 @@ namespace Example2
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
             if (textures != null) foreach (var texture in textures) texture.Dispose();
         }
 

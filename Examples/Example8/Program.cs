@@ -30,7 +30,7 @@ namespace Example8
             scrollTexture = new Texture("data/scrollBar.png");
 
             // create a textbox
-            OpenGL.UI.Controls.ListBox listBox = new OpenGL.UI.Controls.ListBox(scrollTexture, scrollTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), new string[] { "Item 1", "Item 2", "Item 3" });
+            OpenGL.UI.ListBox listBox = new OpenGL.UI.ListBox(scrollTexture, scrollTexture, OpenGL.UI.BMFont.LoadFont("fonts/font16.fnt"), new string[] { "Item 1", "Item 2", "Item 3" });
             listBox.RelativeTo = OpenGL.UI.Corner.Center;
             listBox.Size = new Point(200, 20);
             listBox.BackgroundColor = new Vector4(0.3f, 0.3f, 0.3f, 1.0f);
@@ -57,7 +57,7 @@ namespace Example8
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
             scrollTexture.Dispose();
         }
 

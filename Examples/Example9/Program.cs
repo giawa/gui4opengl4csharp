@@ -24,12 +24,12 @@ namespace Example9
             // initialize the user interface
             OpenGL.UI.UserInterface.InitUI(Window.Width, Window.Height);
 
-            OpenGL.UI.Controls.Text text = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._16pt, "Type Something:");
+            OpenGL.UI.Text text = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._16pt, "Type Something:");
             text.RelativeTo = OpenGL.UI.Corner.Center;
             text.Position = new Point(-260, -10);
 
             // create a text input control
-            OpenGL.UI.Controls.TextInput textInput = new OpenGL.UI.Controls.TextInput(OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"));
+            OpenGL.UI.TextInput textInput = new OpenGL.UI.TextInput(OpenGL.UI.BMFont.LoadFont("fonts/font16.fnt"));
             textInput.Size = new Point(300, 20);
             textInput.Position = new Point(50, 0);
             textInput.RelativeTo = OpenGL.UI.Corner.Center;
@@ -57,7 +57,7 @@ namespace Example9
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
         }
 
         private static void OnRenderFrame()

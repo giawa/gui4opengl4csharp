@@ -29,13 +29,13 @@ namespace Example5
             // create a slider with a specified texture
             sliderTexture = new Texture("data/slider.png");
 
-            OpenGL.UI.Controls.Slider slider = new OpenGL.UI.Controls.Slider(sliderTexture);
+            OpenGL.UI.Slider slider = new OpenGL.UI.Slider(sliderTexture);
             slider.RelativeTo = OpenGL.UI.Corner.Center;
             slider.BackgroundColor = new Vector4(0.1f, 0.1f, 0.1f, 1f);
             slider.LockToSteps = true;
 
             // create some text that will change with the slider position
-            OpenGL.UI.Controls.Text text = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._16pt, "Value: 0");
+            OpenGL.UI.Text text = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._16pt, "Value: 0");
             text.RelativeTo = OpenGL.UI.Corner.Center;
             text.Position = new Point(120, -text.TextSize.y / 2);
 
@@ -63,7 +63,7 @@ namespace Example5
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
             sliderTexture.Dispose();
         }
 

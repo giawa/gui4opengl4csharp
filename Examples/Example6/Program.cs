@@ -30,12 +30,12 @@ namespace Example6
             checkBoxTexture = new Texture("data/checkBox.png");
             checkBoxCheckedTexture = new Texture("data/checkBoxChecked.png");
 
-            OpenGL.UI.Controls.CheckBox checkbox1 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me!");
+            OpenGL.UI.CheckBox checkbox1 = new OpenGL.UI.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.BMFont.LoadFont("fonts/font16.fnt"), "Check Me!");
             checkbox1.RelativeTo = OpenGL.UI.Corner.Center;
             checkbox1.Position = new Point(-50, 12);
             checkbox1.OnCheckedChanged = (sender, e) => checkbox1.Text = (checkbox1.Checked ? "Thanks!" : "Check Me!");
 
-            OpenGL.UI.Controls.CheckBox checkbox2 = new OpenGL.UI.Controls.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.Controls.BMFont.LoadFont("fonts/font16.fnt"), "Check Me Too!");
+            OpenGL.UI.CheckBox checkbox2 = new OpenGL.UI.CheckBox(checkBoxTexture, checkBoxCheckedTexture, OpenGL.UI.BMFont.LoadFont("fonts/font16.fnt"), "Check Me Too!");
             checkbox2.RelativeTo = OpenGL.UI.Corner.Center;
             checkbox2.Position = new Point(-50, -12);
             checkbox2.OnCheckedChanged = (sender, e) => checkbox2.Text = (checkbox2.Checked ? "Thanks!" : "Check Me Too!");
@@ -62,7 +62,7 @@ namespace Example6
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
             checkBoxTexture.Dispose();
             checkBoxCheckedTexture.Dispose();
         }

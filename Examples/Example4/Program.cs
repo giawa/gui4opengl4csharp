@@ -36,11 +36,11 @@ namespace Example4
             menuTexture = new Texture("data/menu.png");
             menuSelectedTexture = new Texture("data/menuSelected.png");
 
-            OpenGL.UI.Controls.Button menu = new OpenGL.UI.Controls.Button(menuTexture);
+            OpenGL.UI.Button menu = new OpenGL.UI.Button(menuTexture);
             colorPickerContainer.AddElement(menu);
 
             // place some text within the menu bar
-            OpenGL.UI.Controls.Text menuText = new OpenGL.UI.Controls.Text(OpenGL.UI.Controls.Text.FontSize._12pt, "Color Picker");
+            OpenGL.UI.Text menuText = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._12pt, "Color Picker");
             menuText.RelativeTo = OpenGL.UI.Corner.TopLeft;
             menuText.Position = new Point(4, 17);
             colorPickerContainer.AddElement(menuText);
@@ -69,11 +69,11 @@ namespace Example4
                 };
 
             // create the color picker itself
-            OpenGL.UI.Controls.ColorGradient gradient = new OpenGL.UI.Controls.ColorGradient();
+            OpenGL.UI.ColorGradient gradient = new OpenGL.UI.ColorGradient();
             gradient.Position = new Point(30, 30);
 
             // and create a hue slider that can control the types of colors shown in the color picker
-            OpenGL.UI.Controls.HueGradient hue = new OpenGL.UI.Controls.HueGradient();
+            OpenGL.UI.HueGradient hue = new OpenGL.UI.HueGradient();
             hue.Position = new Point(190, 30);
 
             // add the color picker and its hue slider to the UI
@@ -101,7 +101,7 @@ namespace Example4
         {
             // make sure to dispose of everything
             OpenGL.UI.UserInterface.Dispose();
-            OpenGL.UI.Controls.BMFont.Dispose();
+            OpenGL.UI.BMFont.Dispose();
             menuTexture.Dispose();
             menuSelectedTexture.Dispose();
         }

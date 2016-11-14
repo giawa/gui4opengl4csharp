@@ -3,7 +3,7 @@
 using OpenGL;
 using OpenGL.Platform;
 
-namespace OpenGL.UI.Controls
+namespace OpenGL.UI
 {
     public class Slider : UIContainer
     {

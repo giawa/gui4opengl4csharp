@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using OpenGL;
 using OpenGL.Platform;
 
-namespace OpenGL.UI.Controls
+namespace OpenGL.UI
 {
     public class Console : UIContainer
     {
