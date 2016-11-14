@@ -7,8 +7,8 @@
     <ProjectGuid>{87396D4A-144F-402E-AC9A-42205B8A3312}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>gui4opengl</RootNamespace>
-    <AssemblyName>gui4opengl</AssemblyName>
+    <RootNamespace>OpenGL.UI</RootNamespace>
+    <AssemblyName>OpenGL.UI</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
