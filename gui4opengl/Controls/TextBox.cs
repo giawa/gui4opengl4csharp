@@ -328,7 +328,7 @@ namespace OpenGL.UI.Controls
             else if (Parent != null && scrollBar != null) Parent.RemoveElement(scrollBar);
 
             // now build the VAO objects
-            for (int i = CurrentLine; i < MaximumLines + CurrentLine; i++)
+            for (int i = CurrentLine; i <= MaximumLines + CurrentLine; i++)
             {
                 if (i >= lines.Count || i < 0) break;
                 if (lines[i].Count == 0) continue;
