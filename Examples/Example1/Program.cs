@@ -39,7 +39,7 @@ namespace Example1
 
             // create some colored text
             OpenGL.UI.Text coloredText = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._24pt, "using C#", OpenGL.UI.BMFont.Justification.Center);
-            coloredText.Position = new OpenGL.Platform.Point(0, -30);
+            coloredText.Position = new Point(0, -30);
             coloredText.Color = new Vector3(0.2f, 0.3f, 1f);
             coloredText.RelativeTo = OpenGL.UI.Corner.Center;
 
