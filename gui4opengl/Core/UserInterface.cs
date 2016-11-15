@@ -26,6 +26,13 @@ namespace OpenGL.UI
         public static int Height { get; set; }
 
         public static int MainThreadID { get; private set; }
+
+        private static Stack<UIContainer> activeContainerStack = new Stack<UIContainer>();
+
+        public static Stack<UIContainer> ActiveContainer
+        {
+            get { return activeContainerStack; }
+        }
         #endregion
 
         #region Initialization and Adding/Removing Elements
