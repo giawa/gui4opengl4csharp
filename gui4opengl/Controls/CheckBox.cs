@@ -85,7 +85,7 @@ namespace OpenGL.UI
             set
             {
                 isChecked = value;
-                OnCheckedChanged(this, new MouseEventArgs());
+                if (OnCheckedChanged != null) OnCheckedChanged(this, new MouseEventArgs());
 
                 if (isChecked) checkBox.BackgroundTexture = CheckedTexture;
                 else checkBox.BackgroundTexture = UncheckedTexture;
