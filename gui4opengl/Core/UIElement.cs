@@ -117,7 +117,7 @@ namespace OpenGL.UI
             get { return u_size; }
             set
             {
-                if (MaxSize.x == 0 || MaxSize.y == 0) MaxSize = new Point(1000000, 1000000);
+                if (MaxSize.X == 0 || MaxSize.Y == 0) MaxSize = new Point(1000000, 1000000);
                 u_size = Point.Max(MinSize, Point.Min(MaxSize, value));
             }
         }
@@ -194,38 +194,38 @@ namespace OpenGL.UI
             {
                 if (RelativeTo == Corner.BottomLeft) CorrectedPosition = Position;
                 else if (RelativeTo == Corner.TopLeft)
-                    CorrectedPosition = new Point(Position.x, Position.y);
+                    CorrectedPosition = new Point(Position.X, Position.Y);
                 else if (RelativeTo == Corner.BottomRight)
-                    CorrectedPosition = new Point(UserInterface.Width - Position.x - Size.x, Position.y);
+                    CorrectedPosition = new Point(UserInterface.Width - Position.X - Size.X, Position.Y);
                 else if (RelativeTo == Corner.TopRight)
-                    CorrectedPosition = new Point(UserInterface.Width - Position.x - Size.x, -Position.y - Size.y);
+                    CorrectedPosition = new Point(UserInterface.Width - Position.X - Size.X, -Position.Y - Size.Y);
                 else if (RelativeTo == Corner.Bottom)
-                    CorrectedPosition = new Point(UserInterface.Width / 2 - Size.x / 2 + Position.x, Position.y);
+                    CorrectedPosition = new Point(UserInterface.Width / 2 - Size.X / 2 + Position.X, Position.Y);
                 else if (RelativeTo == Corner.Top)
-                    CorrectedPosition = new Point(UserInterface.Width / 2 - Size.x / 2 + Position.x, -Position.y - Size.y);
+                    CorrectedPosition = new Point(UserInterface.Width / 2 - Size.X / 2 + Position.X, -Position.Y - Size.Y);
                 else if (RelativeTo == Corner.Center)
-                    CorrectedPosition = new Point(UserInterface.Width / 2 - Size.x / 2 + Position.x, UserInterface.Height / 2 - Size.y / 2 + Position.y);
+                    CorrectedPosition = new Point(UserInterface.Width / 2 - Size.X / 2 + Position.X, UserInterface.Height / 2 - Size.Y / 2 + Position.Y);
             }
             else
             {
                 if (RelativeTo == Corner.BottomLeft) CorrectedPosition = Position;
                 else if (RelativeTo == Corner.TopLeft)
-                    CorrectedPosition = new Point(Position.x, Parent.Size.y - Position.y - Size.y);
+                    CorrectedPosition = new Point(Position.X, Parent.Size.Y - Position.Y - Size.Y);
                 else if (RelativeTo == Corner.BottomRight)
-                    CorrectedPosition = new Point(Parent.Size.x - Position.x - Size.x, Position.y);
+                    CorrectedPosition = new Point(Parent.Size.X - Position.X - Size.X, Position.Y);
                 else if (RelativeTo == Corner.TopRight)
-                    CorrectedPosition = new Point(Parent.Size.x - Position.x - Size.x, Parent.Size.y - Position.y - Size.y);
+                    CorrectedPosition = new Point(Parent.Size.X - Position.X - Size.X, Parent.Size.Y - Position.Y - Size.Y);
                 else if (RelativeTo == Corner.Bottom)
-                    CorrectedPosition = new Point(Parent.Size.x / 2 - Size.x / 2 + Position.x, Position.y);
+                    CorrectedPosition = new Point(Parent.Size.X / 2 - Size.X / 2 + Position.X, Position.Y);
                 else if (RelativeTo == Corner.Top)
-                    CorrectedPosition = new Point(Parent.Size.x / 2 - Size.x / 2 + Position.x, Parent.Size.y - Position.y - Size.y);
+                    CorrectedPosition = new Point(Parent.Size.X / 2 - Size.X / 2 + Position.X, Parent.Size.Y - Position.Y - Size.Y);
                 else if (RelativeTo == Corner.Fill)
                 {
                     CorrectedPosition = new Point(0, 0);
                     Size = Parent.Size;
                 }
                 else if (RelativeTo == Corner.Center)
-                    CorrectedPosition = new Point(Parent.Size.x / 2 - Size.x / 2 + Position.x, Parent.Size.y / 2 - Size.y / 2 + Position.y);
+                    CorrectedPosition = new Point(Parent.Size.X / 2 - Size.X / 2 + Position.X, Parent.Size.Y / 2 - Size.Y / 2 + Position.Y);
                 CorrectedPosition += Parent.CorrectedPosition;
             }
 
@@ -236,7 +236,7 @@ namespace OpenGL.UI
                     uiQuad.DisposeChildren = true;
                     uiQuad.Dispose();
                 }
-                uiQuad = OpenGL.Geometry.CreateQuad(Shaders.SolidUIShader, Vector2.Zero, new Vector2(Size.x, Size.y), Vector2.Zero, new Vector2(1, 1));
+                uiQuad = OpenGL.Geometry.CreateQuad(Shaders.SolidUIShader, Vector2.Zero, new Vector2(Size.X, Size.Y), Vector2.Zero, new Vector2(1, 1));
             }
 
             Invalidate();
@@ -247,8 +247,8 @@ namespace OpenGL.UI
         public virtual bool Pick(Point Location)
         {
             if (DisablePicking) return false;
-            return (Location.x >= CorrectedPosition.x && Location.x <= CorrectedPosition.x + Size.x &&
-                Location.y >= CorrectedPosition.y && Location.y <= CorrectedPosition.y + Size.y);
+            return (Location.X >= CorrectedPosition.X && Location.X <= CorrectedPosition.X + Size.X &&
+                Location.Y >= CorrectedPosition.Y && Location.Y <= CorrectedPosition.Y + Size.Y);
         }
 
         public virtual void Invalidate() { }
@@ -286,8 +286,8 @@ namespace OpenGL.UI
         #region Methods
         public static bool Intersects(Point Position, Point Size, Point Location)
         {
-            return (Location.x >= Position.x && Location.x <= Position.x + Size.x &&
-                Location.y >= Position.y && Location.y <= Position.y + Size.y);
+            return (Location.X >= Position.X && Location.X <= Position.X + Size.X &&
+                Location.Y >= Position.Y && Location.Y <= Position.Y + Size.Y);
         }
         #endregion
 
@@ -302,14 +302,14 @@ namespace OpenGL.UI
         {
             if (BackgroundTexture == null) return;
             if (uiQuad == null)
-                uiQuad = OpenGL.Geometry.CreateQuad(Shaders.SolidUIShader, Vector2.Zero, new Vector2(Size.x, Size.y), Vector2.Zero, new Vector2(1, 1));
+                uiQuad = OpenGL.Geometry.CreateQuad(Shaders.SolidUIShader, Vector2.Zero, new Vector2(Size.X, Size.Y), Vector2.Zero, new Vector2(1, 1));
 
             Gl.Enable(EnableCap.Blend);
             Gl.ActiveTexture(TextureUnit.Texture0);
             Gl.BindTexture(BackgroundTexture);
 
             Shaders.TexturedUIShader.Use();
-            Shaders.TexturedUIShader["position"].SetValue(new Vector3(CorrectedPosition.x, CorrectedPosition.y, 0));
+            Shaders.TexturedUIShader["position"].SetValue(new Vector3(CorrectedPosition.X, CorrectedPosition.Y, 0));
             uiQuad.DrawProgram(Shaders.TexturedUIShader);
 
             Gl.Disable(EnableCap.Blend);
@@ -324,12 +324,12 @@ namespace OpenGL.UI
 
         public void DrawQuadColored(Vector4 color)
         {
-            if (uiQuad == null) uiQuad = OpenGL.Geometry.CreateQuad(Shaders.SolidUIShader, Vector2.Zero, new Vector2(Size.x, Size.y), Vector2.Zero, new Vector2(1, 1));
+            if (uiQuad == null) uiQuad = OpenGL.Geometry.CreateQuad(Shaders.SolidUIShader, Vector2.Zero, new Vector2(Size.X, Size.Y), Vector2.Zero, new Vector2(1, 1));
 
             Gl.Enable(EnableCap.Blend);
 
             Shaders.SolidUIShader.Use();
-            Shaders.SolidUIShader["position"].SetValue(new Vector3(CorrectedPosition.x, CorrectedPosition.y, 0));
+            Shaders.SolidUIShader["position"].SetValue(new Vector3(CorrectedPosition.X, CorrectedPosition.Y, 0));
             Shaders.SolidUIShader["color"].SetValue(color);
             uiQuad.Draw();
 

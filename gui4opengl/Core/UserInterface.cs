@@ -130,7 +130,7 @@ namespace OpenGL.UI
         {
             if (UIWindow == null) return false;
 
-            if ((Selection = UIWindow.PickChildren(new Point(Location.x, UserInterface.Height - Location.y))) != null)
+            if ((Selection = UIWindow.PickChildren(new Point(Location.X, UserInterface.Height - Location.Y))) != null)
             {
                 if (Selection == UIWindow) return false;
                 else return true;
@@ -184,7 +184,7 @@ namespace OpenGL.UI
         {
             UIElement lastSelection = currentSelection;
             MousePosition = new Click(x, y, false, false, false, false);
-            Point position = new Point(MousePosition.x, MousePosition.y);
+            Point position = new Point(MousePosition.X, MousePosition.Y);
 
             if (currentSelection != null && currentSelection.OnMouseMove != null) currentSelection.OnMouseMove(null, new MouseEventArgs(MousePosition, LastMousePosition));
 
@@ -206,13 +206,13 @@ namespace OpenGL.UI
             MousePosition = new Click(x, y, (MouseButton)button, (MouseState)state);
 
             // call OnLoseFocus if a control lost focus
-            if (MousePosition.state == MouseState.Down)
+            if (MousePosition.State == MouseState.Down)
             {
                 if (Focus != null && currentSelection != Focus && Focus.OnLoseFocus != null) Focus.OnLoseFocus(null, currentSelection);
                 Focus = currentSelection;
             }
 
-            if (activeSelection != null && MousePosition.state == MouseState.Up)
+            if (activeSelection != null && MousePosition.State == MouseState.Up)
             {
                 // if mouseup while a pickable object is active
                 if (activeSelection.OnMouseUp != null) activeSelection.OnMouseUp(null, new MouseEventArgs(MousePosition, LastMousePosition));
@@ -221,7 +221,7 @@ namespace OpenGL.UI
             else if (currentSelection != null && !(currentSelection is UIContainer))
             {
                 // if the mouse is current over a pickable object and clicks
-                if (MousePosition.state == MouseState.Down)
+                if (MousePosition.State == MouseState.Down)
                 {
                     if (currentSelection.OnMouseDown != null) currentSelection.OnMouseDown(null, new MouseEventArgs(MousePosition, LastMousePosition));
                     activeSelection = currentSelection;

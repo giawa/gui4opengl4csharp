@@ -32,8 +32,8 @@ namespace OpenGL.UI
         {
             base.OnResize();
 
-            textBox.Size = new Point(Size.x, Size.y - textBox.Font.Height);
-            textEntry.Size = new Point(Size.x, textBox.Font.Height);
+            textBox.Size = new Point(Size.X, Size.Y - textBox.Font.Height);
+            textEntry.Size = new Point(Size.X, textBox.Font.Height);
         }
 
         public delegate void OnCommand(string args);

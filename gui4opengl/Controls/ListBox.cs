@@ -61,7 +61,7 @@ namespace OpenGL.UI
                 font = value;
                 text = new Text(Shaders.FontShader, font, dropDownBox.SelectedLineText, BMFont.Justification.Left);
                 text.RelativeTo = Corner.TopLeft;
-                text.Position = new Point(0, text.TextSize.y);
+                text.Position = new Point(0, text.TextSize.Y);
             }
         }
         #endregion
@@ -82,7 +82,7 @@ namespace OpenGL.UI
 
             this.dropDownToggle = new Button(dropDownIcon);
             this.dropDownToggle.RelativeTo = Corner.TopRight;
-            this.dropDownToggle.Position = new Point(0, (this.Size.y - this.dropDownToggle.Size.y)/ 2);
+            this.dropDownToggle.Position = new Point(0, (this.Size.Y - this.dropDownToggle.Size.Y)/ 2);
             this.AddElement(dropDownToggle);
 
             this.dropDownBox = new TextBox(font, scrollTexture, selectedLine);
@@ -141,11 +141,11 @@ namespace OpenGL.UI
 
             int numLines = Math.Min(items.Length, 4);
             dropDownBox.RelativeTo = this.RelativeTo;
-            dropDownBox.Size = new Point(this.Size.x - 8, (int)Math.Round(font.Height * numLines * 1.2));
-            dropDownBox.Position = new Point(this.Position.x, this.Position.y + this.Size.y);
+            dropDownBox.Size = new Point(this.Size.X - 8, (int)Math.Round(font.Height * numLines * 1.2));
+            dropDownBox.Position = new Point(this.Position.X, this.Position.Y + this.Size.Y);
 
-            if (dropDownBox.RelativeTo == Corner.Center) dropDownBox.Position = new Point(dropDownBox.Position.x, (-this.Size.y - dropDownBox.Size.y) / 2);
-            this.dropDownToggle.Position = new Point(0, (this.Size.y - this.dropDownToggle.Size.y) / 2);
+            if (dropDownBox.RelativeTo == Corner.Center) dropDownBox.Position = new Point(dropDownBox.Position.X, (-this.Size.Y - dropDownBox.Size.Y) / 2);
+            this.dropDownToggle.Position = new Point(0, (this.Size.Y - this.dropDownToggle.Size.Y) / 2);
         }
         #endregion
     }

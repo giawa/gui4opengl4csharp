@@ -60,11 +60,11 @@ namespace OpenGL.UI
             this.OnMouseDown = new OnMouse((sender, eventArgs) =>
             {
                 mouseDown = (eventArgs.Button == MouseButton.Left);
-                UpdateMousePosition(eventArgs.Location.x, eventArgs.Location.y);
+                UpdateMousePosition(eventArgs.Location.X, eventArgs.Location.Y);
             });
             this.OnMouseUp = new OnMouse((sender, eventArgs) => mouseDown = (eventArgs.Button == MouseButton.Left ? false : mouseDown));
             this.OnMouseLeave = new OnMouse((sender, eventArgs) => mouseDown = false);
-            this.OnMouseMove = new OnMouse((sender, eventArgs) => UpdateMousePosition(eventArgs.Location.x, eventArgs.Location.y));
+            this.OnMouseMove = new OnMouse((sender, eventArgs) => UpdateMousePosition(eventArgs.Location.X, eventArgs.Location.Y));
 
             UpdateColor();
         }
@@ -75,8 +75,8 @@ namespace OpenGL.UI
         {
             if (!mouseDown) return;
 
-            selx = Math.Min(1, (float)(x - CorrectedPosition.x) / Size.x);
-            sely = Math.Min(1, (float)((UserInterface.Height - y) - CorrectedPosition.y) / Size.y);
+            selx = Math.Min(1, (float)(x - CorrectedPosition.X) / Size.X);
+            sely = Math.Min(1, (float)((UserInterface.Height - y) - CorrectedPosition.Y) / Size.Y);
 
             Program.Use();
             Program["sel"].SetValue(new Vector2(selx, sely));
@@ -111,7 +111,7 @@ namespace OpenGL.UI
             base.OnResize();
 
             Program.Use();
-            Program["model_matrix"].SetValue(Matrix4.CreateTranslation(new Vector3(CorrectedPosition.x, CorrectedPosition.y, 0)));
+            Program["model_matrix"].SetValue(Matrix4.CreateTranslation(new Vector3(CorrectedPosition.X, CorrectedPosition.Y, 0)));
         }
 
         protected override void Dispose(bool disposing)
@@ -149,11 +149,11 @@ namespace OpenGL.UI
             this.OnMouseDown = new OnMouse((sender, eventArgs) =>
             {
                 mouseDown = (eventArgs.Button == MouseButton.Left);
-                UpdateMousePosition(eventArgs.Location.x, eventArgs.Location.y);
+                UpdateMousePosition(eventArgs.Location.X, eventArgs.Location.Y);
             });
             this.OnMouseUp = new OnMouse((sender, eventArgs) => mouseDown = (eventArgs.Button == MouseButton.Left ? false : mouseDown));
             this.OnMouseLeave = new OnMouse((sender, eventArgs) => mouseDown = false);
-            this.OnMouseMove = new OnMouse((sender, eventArgs) => UpdateMousePosition(eventArgs.Location.x, eventArgs.Location.y));
+            this.OnMouseMove = new OnMouse((sender, eventArgs) => UpdateMousePosition(eventArgs.Location.X, eventArgs.Location.Y));
         }
         #endregion
 
@@ -163,9 +163,9 @@ namespace OpenGL.UI
             if (!mouseDown) return;
 
             // calculate the selected hue based on the mouse position
-            float hue = ((UserInterface.Height - y) - CorrectedPosition.y) / (float)Size.y;
+            float hue = ((UserInterface.Height - y) - CorrectedPosition.Y) / (float)Size.Y;
             Program.Use();
-            Program["hue"].SetValue((float)((UserInterface.Height - y) - CorrectedPosition.y));
+            Program["hue"].SetValue((float)((UserInterface.Height - y) - CorrectedPosition.Y));
 
             // asks the user interface for the applicable color gradient
             // this will need to be modified if multiple color gradients are on the screen at once
@@ -191,7 +191,7 @@ namespace OpenGL.UI
             base.OnResize();
 
             Program.Use();
-            Program["model_matrix"].SetValue(Matrix4.CreateTranslation(new Vector3(CorrectedPosition.x, CorrectedPosition.y, 0)));
+            Program["model_matrix"].SetValue(Matrix4.CreateTranslation(new Vector3(CorrectedPosition.X, CorrectedPosition.Y, 0)));
         }
 
         protected override void Dispose(bool disposing)

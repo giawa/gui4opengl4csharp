@@ -61,8 +61,8 @@ namespace Example4
                 {
                     if (moving)
                     {
-                        int x = colorPickerContainer.Position.x + OpenGL.UI.UserInterface.MousePosition.x - OpenGL.UI.UserInterface.LastMousePosition.x;
-                        int y = colorPickerContainer.Position.y + OpenGL.UI.UserInterface.MousePosition.y - OpenGL.UI.UserInterface.LastMousePosition.y;
+                        int x = colorPickerContainer.Position.X + OpenGL.UI.UserInterface.MousePosition.X - OpenGL.UI.UserInterface.LastMousePosition.X;
+                        int y = colorPickerContainer.Position.Y + OpenGL.UI.UserInterface.MousePosition.Y - OpenGL.UI.UserInterface.LastMousePosition.Y;
                         colorPickerContainer.Position = new Point(x, y);
                         colorPickerContainer.OnResize();
                     }

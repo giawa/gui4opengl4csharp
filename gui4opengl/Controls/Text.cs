@@ -150,7 +150,7 @@ namespace OpenGL.UI
 
             Gl.Enable(EnableCap.Blend);
             Program.Use();
-            Program["position"].SetValue(new Vector2(CorrectedPosition.x + Padding.x, CorrectedPosition.y + Padding.y));
+            Program["position"].SetValue(new Vector2(CorrectedPosition.X + Padding.X, CorrectedPosition.Y + Padding.Y));
             Program["color"].SetValue(color);
             VAO.BindAttributes(Program);
             Gl.DrawElements(BeginMode.Triangles, vertexCount, DrawElementsType.UnsignedInt, IntPtr.Zero);
@@ -167,13 +167,13 @@ namespace OpenGL.UI
             Gl.BindTexture(bitmapFont.FontTexture);
 
             int yoffset = 0;
-            if (this.Size.y > TextSize.y)
-                yoffset = (Size.y - TextSize.y) / 2;
+            if (this.Size.Y > TextSize.Y)
+                yoffset = (Size.Y - TextSize.Y) / 2;
 
             Gl.Enable(EnableCap.Blend);
             Program.Use();
-            if (this.Justification == BMFont.Justification.Center) Program["position"].SetValue(new Vector2(CorrectedPosition.x + Padding.x + Size.x / 2, CorrectedPosition.y + Padding.y + yoffset));
-            else Program["position"].SetValue(new Vector2(CorrectedPosition.x + Padding.x, CorrectedPosition.y + Padding.y + yoffset));
+            if (this.Justification == BMFont.Justification.Center) Program["position"].SetValue(new Vector2(CorrectedPosition.X + Padding.X + Size.X / 2, CorrectedPosition.Y + Padding.Y + yoffset));
+            else Program["position"].SetValue(new Vector2(CorrectedPosition.X + Padding.X, CorrectedPosition.Y + Padding.Y + yoffset));
             Program["color"].SetValue(color);
             VAO.Draw();
             Gl.Disable(EnableCap.Blend);

@@ -42,9 +42,9 @@ namespace OpenGL.UI
                     if (font != null)
                     {
                         text = new Text(Shaders.FontShader, font, textString, BMFont.Justification.Left);
-                        text.Size = new Point(0, this.Size.y);
+                        text.Size = new Point(0, this.Size.Y);
                         text.RelativeTo = Corner.BottomLeft;
-                        text.Position = new Point(UncheckedTexture.Size.Width + 6, Size.y / 2 - text.TextSize.y / 2);
+                        text.Position = new Point(UncheckedTexture.Size.Width + 6, Size.Y / 2 - text.TextSize.Y / 2);
 
                         this.AddElement(text);
                     }

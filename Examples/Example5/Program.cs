@@ -37,7 +37,7 @@ namespace Example5
             // create some text that will change with the slider position
             OpenGL.UI.Text text = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._16pt, "Value: 0");
             text.RelativeTo = OpenGL.UI.Corner.Center;
-            text.Position = new Point(120, -text.TextSize.y / 2);
+            text.Position = new Point(120, -text.TextSize.Y / 2);
 
             slider.OnValueChanged = (sender, e) => text.String = string.Format("Value: {0}", slider.Value);
 

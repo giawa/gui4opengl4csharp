@@ -78,7 +78,7 @@ namespace OpenGL.UI
             set
             {
                 font = value;
-                MaximumLines = (int)Math.Round(Size.y / (font.Height * 1.2 + 1));
+                MaximumLines = (int)Math.Round(Size.Y / (font.Height * 1.2 + 1));
             }
         }
 
@@ -154,11 +154,11 @@ namespace OpenGL.UI
             scrollBar.RelativeTo = Corner.BottomLeft;
 
             float percent = (float)CurrentLine / (this.LineCount - this.MaximumLines);
-            int y = Size.y - scrollBar.Size.y;
-            y -= (int)Math.Round(percent * (Size.y - scrollBar.Size.y));
+            int y = Size.Y - scrollBar.Size.Y;
+            y -= (int)Math.Round(percent * (Size.Y - scrollBar.Size.Y));
 
             scrollBar.RelativeTo = Corner.BottomLeft;
-            scrollBar.Position = CorrectedPosition - Parent.CorrectedPosition + new Point(Size.x, y);
+            scrollBar.Position = CorrectedPosition - Parent.CorrectedPosition + new Point(Size.X, y);
 
             scrollBar.OnResize();
         }
@@ -175,7 +175,7 @@ namespace OpenGL.UI
             this.OnMouseDown = new OnMouse((sender, eventArgs) =>
                 {
                     // find which line we're on
-                    int y = (CorrectedPosition.y + Size.y) - (UserInterface.Height - eventArgs.Location.y);
+                    int y = (CorrectedPosition.Y + Size.Y) - (UserInterface.Height - eventArgs.Location.Y);
                     SelectedLine = currentLine + (int)(y / (Font.Height * 1.2));
                 });
 
@@ -183,31 +183,31 @@ namespace OpenGL.UI
             if (scrollbarTexture == null) scrollbarTexture = scrollTexture;
             this.scrollBar = new Button(scrollbarTexture);
             this.scrollBar.BackgroundColor = new Vector4(0, 0, 0, 0);
-            this.scrollBar.Size = new Point(scrollBar.Size.x, scrollBar.Size.y / 2);
+            this.scrollBar.Size = new Point(scrollBar.Size.X, scrollBar.Size.Y / 2);
 
             scrollBar.OnMouseUp = new OnMouse((sender, eventArgs) => scrollBarMouseDown = false);
             scrollBar.OnMouseDown = new OnMouse((sender, eventArgs) =>
                 {
                     scrollBarMouseDown = (eventArgs.Button == MouseButton.Left);
-                    scrollBarDown = eventArgs.Location.y;
+                    scrollBarDown = eventArgs.Location.Y;
                 });
             scrollBar.OnMouseMove = new OnMouse((sender, eventArgs) =>
             {
                 if (!scrollBarMouseDown) return;
 
-                int dy = scrollBarDown - eventArgs.Location.y;
+                int dy = scrollBarDown - eventArgs.Location.Y;
 
-                int ymin = CorrectedPosition.y - Parent.CorrectedPosition.y;
-                int ymax = ymin + Size.y - ScrollBar.Size.y;
-                int y = Math.Min(ymax, Math.Max(ymin, scrollBar.Position.y + dy));
+                int ymin = CorrectedPosition.Y - Parent.CorrectedPosition.Y;
+                int ymax = ymin + Size.Y - ScrollBar.Size.Y;
+                int y = Math.Min(ymax, Math.Max(ymin, scrollBar.Position.Y + dy));
 
-                if (y == scrollBar.Position.y) return;
+                if (y == scrollBar.Position.Y) return;
 
-                scrollBarDown = eventArgs.Location.y;
-                scrollBar.Position = new Point(scrollBar.Position.x, y);
+                scrollBarDown = eventArgs.Location.Y;
+                scrollBar.Position = new Point(scrollBar.Position.X, y);
                 scrollBar.OnResize();
 
-                double percent = ((ymax - y) / ((double)Size.y - scrollBar.Size.y));
+                double percent = ((ymax - y) / ((double)Size.Y - scrollBar.Size.Y));
                 CurrentLine = (int)Math.Round((LineCount - MaximumLines) * percent);
             });
             scrollBar.OnLoseFocus = new OnFocus((o, e) =>
@@ -221,7 +221,7 @@ namespace OpenGL.UI
         #region Build VAOs
         private void ParseText()
         {
-            MaximumLines = (int)Math.Round(Size.y / (Font.Height * 1.2 + 1));
+            MaximumLines = (int)Math.Round(Size.Y / (Font.Height * 1.2 + 1));
 
             lines.Clear();
 
@@ -235,7 +235,7 @@ namespace OpenGL.UI
                 int w = text[i].Font.GetWidth(text[i].Text);
 
                 // check if the text simply fits
-                if (xpos + w + Padding.x * 2 <= Size.x)
+                if (xpos + w + Padding.X * 2 <= Size.X)
                 {
                     line.Add(text[i]);
                     text[i].Position = xpos;
@@ -255,13 +255,13 @@ namespace OpenGL.UI
 
                     while (remaining.Length > 0)
                     {
-                        int maximumLength = 0, currentWidth = xpos + Padding.x * 2;
+                        int maximumLength = 0, currentWidth = xpos + Padding.X * 2;
 
                         // find out where we have to chop the text to get it to fit
                         for (maximumLength = 0; maximumLength < remaining.Length; maximumLength++)
                         {
                             currentWidth += text[i].Font.GetWidth(remaining[maximumLength]);
-                            if (currentWidth > Size.x)
+                            if (currentWidth > Size.X)
                             {
                                 maximumLength--;
                                 break;
@@ -386,7 +386,7 @@ namespace OpenGL.UI
                 selectedVAO.DisposeChildren = true;
                 selectedVAO.Dispose();
             }
-            VBO<Vector3> vertex = new VBO<Vector3>(new Vector3[] { new Vector3(0, 0, 0), new Vector3(Size.x, 0, 0), new Vector3(Size.x, Font.Height * 1.2f, 0), new Vector3(0, Font.Height * 1.2f, 0) });
+            VBO<Vector3> vertex = new VBO<Vector3>(new Vector3[] { new Vector3(0, 0, 0), new Vector3(Size.X, 0, 0), new Vector3(Size.X, Font.Height * 1.2f, 0), new Vector3(0, Font.Height * 1.2f, 0) });
             VBO<int> elements = new VBO<int>(new int[] { 0, 1, 3, 1, 2, 3 }, BufferTarget.ElementArrayBuffer);
             selectedVAO = new VAO(Shaders.SolidUIShader, vertex, elements);
 
@@ -443,7 +443,7 @@ namespace OpenGL.UI
                 if (AllowSelection && (currentLine + i) == SelectedLine && selectedVAO != null)
                 {
                     Shaders.SolidUIShader.Use();
-                    Shaders.SolidUIShader["position"].SetValue(new Vector3(CorrectedPosition.x, CorrectedPosition.y - (1.2f * (i + 1) * Font.Height - Size.y), 0));
+                    Shaders.SolidUIShader["position"].SetValue(new Vector3(CorrectedPosition.X, CorrectedPosition.Y - (1.2f * (i + 1) * Font.Height - Size.Y), 0));
                     Shaders.SolidUIShader["color"].SetValue(SelectedColor);
 
                     selectedVAO.Draw();
@@ -453,7 +453,7 @@ namespace OpenGL.UI
                 {
                     if (v >= vaos.Count) break; // the VAO must not be up to date, avoid a crash here
                     
-                    vaos[v].CorrectedPosition = new Point(CorrectedPosition.x + Padding.x, (int)(CorrectedPosition.y - (1.2 * (i + 1) * Font.Height - Size.y)));
+                    vaos[v].CorrectedPosition = new Point(CorrectedPosition.X + Padding.X, (int)(CorrectedPosition.Y - (1.2 * (i + 1) * Font.Height - Size.Y)));
 
                     if (VisibleCharacters <= 0 || characterCount + vaos[v].String.Length <= VisibleCharacters)
                     {

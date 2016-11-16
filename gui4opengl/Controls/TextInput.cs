@@ -60,7 +60,7 @@ namespace OpenGL.UI
                     Input.SubscribeAll(new Event((key, state) =>
                         {
                             // give 16 pixels of padding on the right
-                            if (!state || text.TextSize.x > Size.x - 16) return;
+                            if (!state || text.TextSize.X > Size.X - 16) return;
 
                             text.String += key;
 

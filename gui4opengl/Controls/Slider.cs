@@ -56,7 +56,7 @@ namespace OpenGL.UI
 
                 this.value = value;
 
-                int x = (int)((value - min) * (Size.x - sliderButton.Size.x) / (max - min));
+                int x = (int)((value - min) * (Size.X - sliderButton.Size.X) / (max - min));
                 sliderButton.Position = new Point(x, 0);
                 sliderButton.OnResize();    // we've moved this UIElement, make sure we update the CorrectedPosition, etc
             }
@@ -96,40 +96,40 @@ namespace OpenGL.UI
             sliderButton.OnMouseDown = (sender, eventArgs) =>
             {
                 sliderMouseDown = (eventArgs.Button == MouseButton.Left);
-                sliderDown = eventArgs.Location.x;
+                sliderDown = eventArgs.Location.X;
             };
             sliderButton.OnMouseMove = (sender, eventArgs) => this.OnMouseMove(sender, eventArgs);
             this.OnMouseMove = (sender, eventArgs) =>
             {
                 if (!sliderMouseDown) return;
 
-                if (eventArgs.Location.x < CorrectedPosition.x)
+                if (eventArgs.Location.X < CorrectedPosition.X)
                 {
                     // handle case where the mouse has gone too far to the left
                     sliderButton.Position = new Point(0, 0);
                     this.Value = Minimum;
                 }
-                else if (eventArgs.Location.x > CorrectedPosition.x + Size.x)
+                else if (eventArgs.Location.X > CorrectedPosition.X + Size.X)
                 {
                     // handle case where the mouse has gone too far to the right
-                    sliderButton.Position = new Point(Size.x - sliderButton.Size.x, 0);
+                    sliderButton.Position = new Point(Size.X - sliderButton.Size.X, 0);
                     this.Value = Maximum;
                 }
                 else
                 {
-                    int dx = eventArgs.Location.x - sliderDown;
+                    int dx = eventArgs.Location.X - sliderDown;
 
-                    int x = eventArgs.Location.x - CorrectedPosition.x - (sliderButton.Size.x / 2);
-                    double percent = Math.Max(0, (double)x / (Size.x - sliderButton.Size.x));
+                    int x = eventArgs.Location.X - CorrectedPosition.X - (sliderButton.Size.X / 2);
+                    double percent = Math.Max(0, (double)x / (Size.X - sliderButton.Size.X));
 
                     // take care of locking to the closest step
-                    if (LockToSteps) x = (int)(Math.Round(percent * (Maximum - Minimum)) * (Size.x - sliderButton.Size.x) / (Maximum - Minimum));
-                    else x = Math.Max(0, Math.Min(Size.x - sliderButton.Size.x, x));
+                    if (LockToSteps) x = (int)(Math.Round(percent * (Maximum - Minimum)) * (Size.X - sliderButton.Size.X) / (Maximum - Minimum));
+                    else x = Math.Max(0, Math.Min(Size.X - sliderButton.Size.X, x));
 
-                    if (x == sliderButton.Position.x) return;
+                    if (x == sliderButton.Position.X) return;
                     sliderButton.Position = new Point(x, 0);
 
-                    sliderDown = eventArgs.Location.x;
+                    sliderDown = eventArgs.Location.X;
 
                     int clampedValue = Math.Max(Minimum, Math.Min(Maximum, (int)Math.Round((Maximum - Minimum) * percent) + Minimum));
 
@@ -143,7 +143,7 @@ namespace OpenGL.UI
             };
 
             sliderButton.RelativeTo = Corner.BottomLeft;
-            sliderButton.Position = new Point(value * (Size.x - sliderButton.Size.x) / (max - min), 0);
+            sliderButton.Position = new Point(value * (Size.X - sliderButton.Size.X) / (max - min), 0);
             this.AddElement(sliderButton);
         }
         #endregion
