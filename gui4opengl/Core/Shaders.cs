@@ -6,7 +6,7 @@ using OpenGL;
 
 namespace OpenGL.UI
 {
-    public static class Shaders
+    internal static class Shaders
     {
         public static ShaderProgram SolidUIShader;
         public static ShaderProgram TexturedUIShader;
