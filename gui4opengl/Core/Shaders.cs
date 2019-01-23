@@ -48,6 +48,17 @@ namespace OpenGL.UI
             return initialized;
         }
 
+        public static void Dispose()
+        {
+            if (!initialized) return;
+
+            if (SolidUIShader != null) SolidUIShader.Dispose();
+            if (TexturedUIShader != null) TexturedUIShader.Dispose();
+            if (FontShader != null) FontShader.Dispose();
+            if (GradientShader != null) GradientShader.Dispose();
+            if (HueShader != null) HueShader.Dispose();
+        }
+
         private static char[] newlineChar = new char[] { '\n' };
         private static char[] unixNewlineChar = new char[] { '\r' };
 
@@ -97,13 +108,11 @@ namespace OpenGL.UI
         {
             foreach (var program in LoadedPrograms)
             {
-                for (int i = 0; i < program.VertexShader.ShaderParams.Length; i++)
+                var shaderParam = program["ui_projection_matrix"];
+                if (shaderParam != null)
                 {
-                    if (program.VertexShader.ShaderParams[i].Name == "ui_projection_matrix")
-                    {
-                        program.Use();
-                        program["ui_projection_matrix"].SetValue(projectionMatrix);
-                    }
+                    program.Use();
+                    program["ui_projection_matrix"].SetValue(projectionMatrix);
                 }
             }
         }

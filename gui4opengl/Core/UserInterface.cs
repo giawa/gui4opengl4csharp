@@ -85,8 +85,8 @@ namespace OpenGL.UI
         {
             if (!Visible || UIWindow == null) return;
 
-            bool depthTest = Gl.GetBooleanv(GetPName.DepthTest);
-            bool blending = Gl.GetBooleanv(GetPName.Blend);
+            bool depthTest = Gl.GetBoolean(GetPName.DepthTest);
+            bool blending = Gl.GetBoolean(GetPName.Blend);
             if (depthTest)
             {
                 Gl.Disable(EnableCap.DepthTest);
@@ -145,6 +145,8 @@ namespace OpenGL.UI
             UIWindow = null;
 
             Elements.Clear();
+
+            Shaders.Dispose();
         }
         #endregion
 
