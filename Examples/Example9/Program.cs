@@ -46,7 +46,7 @@ namespace Example9
             Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
             Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
 
-            while (true)
+            while (Window.Open)
             {
                 Window.HandleEvents();
                 OnRenderFrame();
