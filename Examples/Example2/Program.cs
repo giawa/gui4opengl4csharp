@@ -1,38 +1,30 @@
 ﻿using System;
-using Tao.FreeGlut;
+
 using OpenGL;
+using OpenGL.Platform;
 
 namespace Example2
 {
     static class Program
     {
-        private static int width = 1280, height = 720;
         private static Texture[] textures;
 
         static void Main()
         {
-            // create an OpenGL window
-            Glut.glutInit();
-            Glut.glutInitDisplayMode(Glut.GLUT_DOUBLE | Glut.GLUT_DEPTH);
-            Glut.glutInitWindowSize(width, height);
-            Glut.glutCreateWindow("OpenGL UI: Example 2");
+            Window.CreateWindow("OpenGL UI: Example 2", 1280, 720);
 
-            // provide the Glut callbacks that are necessary for running this tutorial
-            Glut.glutIdleFunc(OnRenderFrame);
-            Glut.glutDisplayFunc(() => { });    // only here for mac os x
-            Glut.glutCloseFunc(OnClose);
-            Glut.glutMouseFunc(OnMouseClick);
-            Glut.glutMotionFunc(OnMouseMove);
-            Glut.glutPassiveMotionFunc(OnMouseMove);
-            Glut.glutReshapeFunc(OnResize);
-            Glut.glutKeyboardFunc(OnKeyboard);
+            // add a reshape callback to update the UI
+            Window.OnReshapeCallbacks.Add(() => OpenGL.UI.UserInterface.OnResize(Window.Width, Window.Height));
+
+            // add a close callback to make sure we dispose of everything properly
+            Window.OnCloseCallbacks.Add(OnClose);
 
             // enable depth testing to ensure correct z-ordering of our fragments
             Gl.Enable(EnableCap.DepthTest);
             Gl.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 
             // initialize the user interface
-            OpenGL.UI.UserInterface.InitUI(width, height);
+            OpenGL.UI.UserInterface.InitUI(Window.Width, Window.Height);
 
             // create some centered text
             OpenGL.UI.Text selectText = new OpenGL.UI.Text(OpenGL.UI.Text.FontSize._24pt, "Select A Character", OpenGL.UI.BMFont.Justification.Center);
@@ -78,8 +70,18 @@ namespace Example2
                 xoffset += 80;
             }
 
-            // enter the glut main loop (this is where the drawing happens)
-            Glut.glutMainLoop();
+            // subscribe the escape event using the OpenGL.UI class library
+            Input.Subscribe((char)27, Window.OnClose);
+
+            // make sure to set up mouse event handlers for the window
+            Window.OnMouseCallbacks.Add(OpenGL.UI.UserInterface.OnMouseClick);
+            Window.OnMouseMoveCallbacks.Add(OpenGL.UI.UserInterface.OnMouseMove);
+
+            while (Window.Open)
+            {
+                Window.HandleEvents();
+                OnRenderFrame();
+            }
         }
 
         private static void OnClose()
@@ -93,7 +95,7 @@ namespace Example2
         private static void OnRenderFrame()
         {
             // set up the OpenGL viewport and clear both the color and depth bits
-            Gl.Viewport(0, 0, width, height);
+            Gl.Viewport(0, 0, Window.Width, Window.Height);
             Gl.ClearColor(0.2f, 0.2f, 0.2f, 1.0f);
             Gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
@@ -101,7 +103,7 @@ namespace Example2
             OpenGL.UI.UserInterface.Draw();
 
             // finally, swap the back buffer to the front so that the screen displays
-            Glut.glutSwapBuffers();
+            Window.SwapBuffers();
         }
 
         private static void OnMouseClick(int button, int state, int x, int y)
@@ -119,21 +121,6 @@ namespace Example2
             {
                 // do other picking code here if necessary
             }
-        }
-
-        private static void OnResize(int glutWidth, int glutHeight)
-        {
-            width = glutWidth;
-            height = glutHeight;
-
-            // make sure the user interface orthographic matrix is updated and resize events are called
-            OpenGL.UI.UserInterface.OnResize(glutWidth, glutHeight);
-        }
-
-        private static void OnKeyboard(byte key, int x, int y)
-        {
-            // exit the program if the ESC key is pressed
-            if (key == 27) Glut.glutLeaveMainLoop();
         }
     }
 }
