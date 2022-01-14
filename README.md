@@ -24,7 +24,7 @@ There are several more controls on the way.  They just have to be converted from
 ## Examples
 I will include several example projects in the Examples directory.
 ### Example 1
-![Example 1](https://giawa.github.com/ui/example1.png)
+![Example 1](https://giawa.github.io/ui/example1.png)
 
 In this first example we create a window using FreeGlut.  Nearly all of the code in this example is either to initialize FreeGlut, or to hook up the callbacks from FreeGlut correctly.  The interesting portion of the code is here:
 
@@ -49,7 +49,7 @@ OpenGL.UI.UserInterface.AddElement(coloredText);
 We add two Text objects to the screen.  Notice that they are marked as being relative to the center of the screen.  This means their positions will update properly when the screen is resized.  Try it out!
 
 ### Example 2
-![Example 2](https://giawa.github.com/ui/example2_.png)
+![Example 2](https://giawa.github.io/ui/example2_.png)
 
 In this second example we create several Button elements and attach OnMouseEnter, OnMouseLeave, OnMouseClick, OnMouseDown and OnMouseUp events.  Each Button has a Texture that is loaded from an included data directory.  Here's the interesting bit of code, which makes heavy use of lambda functions.
 
@@ -69,12 +69,12 @@ button.OnMouseUp = (sender, e) => button.BackgroundColor = (OpenGL.UI.UserInterf
 button.OnMouseClick = (sender, e) => characterName.String = string.Format("You selected {0}!", character);
 ```
 
-![Example 2 Animated](https://giawa.github.com/ui/example2.gif)
+![Example 2 Animated](https://giawa.github.io/ui/example2.gif)
 
 Note:  Icons made by [Freepik](http://www.freepik.com) from [http://www.flaticon.com](www.flaticon.com) are licensed by CC 3.0 BY.
 
 ### Example 3
-![Example 3](https://giawa.github.com/ui/example3.png)
+![Example 3](https://giawa.github.io/ui/example3.png)
 
 In this third example we try out some color picking.  There are two built-in controls that can help with this (I have plans to merge them into a single control later).  We can create a hue slider and a color picker.  Here's the relevant code.
 
@@ -97,10 +97,10 @@ OpenGL.UI.UserInterface.AddElement(hue);
 
 Also, to switch things up a bit I moved this example over to SDL2, which is more modern and deals with newer versions of Windows a bit better.  I wrapped most of the SDL calls into a Window class, so that makes the Program.cs file much smaller and easier to understand.  Here's the color picker in action (low quality gif to save on size):
 
-![Example 3 Animated](https://giawa.github.com/ui/example3.gif)
+![Example 3 Animated](https://giawa.github.io/ui/example3.gif)
 
 ### Example 4
-![Example 4](https://giawa.github.com/ui/example4.png)
+![Example 4](https://giawa.github.io/ui/example4.png)
 
 In this next example we place the color picker into its own UIContainer.  The UIContainer can hold as many user interface elements as we would like, including other containers!  If we move the UIContainer then all of its child elements will move as well.  This allows us to create dialog boxes, menus and other groupable/moveable things.
 
@@ -133,10 +133,10 @@ menu.OnMouseMove = (sender, e) =>
     };
 ```
 
-![Example 4 Animated](https://giawa.github.com/ui/example4.gif)
+![Example 4 Animated](https://giawa.github.io/ui/example4.gif)
 
 ### Example 5
-![Example 5](https://giawa.github.com/ui/example5_.png)
+![Example 5](https://giawa.github.io/ui/example5_.png)
 
 This this fifth example we try out the Slider control.  The slider is pretty simple to use, with a maximum, minimum and value property.  You can also lock the slider to the closest integer value, which results in the animated image above.  Here's the relevant construction of the Slider control:
 
@@ -150,10 +150,10 @@ slider.BackgroundColor = new Vector4(0.1f, 0.1f, 0.1f, 1f);
 slider.LockToSteps = true;
 ```
 
-![Example 5 Animated](https://giawa.github.com/ui/example5.gif)
+![Example 5 Animated](https://giawa.github.io/ui/example5.gif)
 
 ### Example 6
-![Example 6](https://giawa.github.com/ui/example6.png)
+![Example 6](https://giawa.github.io/ui/example6.png)
 
 In this example we create two simple CheckBox controls.  They're pretty simple, and use two textures - one for the 'checked' state, and one for the 'unchecked' state.  Here's the relevant code:
 
@@ -166,7 +166,7 @@ checkbox1.OnCheckedChanged = (sender, e) => checkbox1.Text = (checkbox1.Checked 
 ```
 
 ### Example 7
-![Example 7](https://giawa.github.com/ui/example7.png)
+![Example 7](https://giawa.github.io/ui/example7.png)
 
 In this example we create a TextBox control.  The TextBox control has a lot of functionality, including word wrapping, color, scrollbar support and more.  Here's the code to create a TextBox:
 
@@ -185,10 +185,10 @@ textBox.WriteLine("This is a textbox, and it supports automatic word wrapping!")
 textBox.WriteLine(new Vector3(0.5f, 0.7f, 1.0f), "It also supports colors!");
 ```
 
-![Example 7 Animated](https://giawa.github.com/ui/example7.gif)
+![Example 7 Animated](https://giawa.github.io/ui/example7.gif)
 
 ### Example 8
-![Example 8](https://giawa.github.com/ui/example8.png)
+![Example 8](https://giawa.github.io/ui/example8.png)
 
 In this example we create a ListBox control, which allows for a drop-down TextBox control and selection of one of multiple elements.  I'd still like to improve the functionality of this control.  However, the basic functionality works!  It's also pretty easy to drop into your user interface.  Here's the relevant code:
 
@@ -200,10 +200,10 @@ listBox.Size = new OpenGL.UI.Point(200, 20);
 listBox.Invalidate();
 ```
 
-![Example 8 Animated](https://giawa.github.com/ui/example8.gif)
+![Example 8 Animated](https://giawa.github.io/ui/example8.gif)
 
 ### Example 9
-![Example 9](https://giawa.github.com/ui/example9.png)
+![Example 9](https://giawa.github.io/ui/example9.png)
 
 In this example we create a TextInput and some labelling text.  If a user clicks the TextInput to get focus then all keyboard presses will be routed to the TextInput.  For now the Input class has been included with OpenGL.UI, but it will be probably pulled into its own OpenGL.Input or OpenGL.Platform namespace in the future.
 
@@ -215,10 +215,10 @@ textInput.Size = new OpenGL.UI.Point(300, 20);
 textInput.RelativeTo = OpenGL.UI.Corner.Center;
 ```
 
-![Example 9 Animated](https://giawa.github.com/ui/example9.gif)
+![Example 9 Animated](https://giawa.github.io/ui/example9.gif)
 
 ### Example 10
-![Example 10](https://giawa.github.com/ui/example10.png)
+![Example 10](https://giawa.github.io/ui/example10.png)
 
 In this tutorial we create two containers, and then fill those containers with some other controls.  Finally, we add a divider that will allow the containers to be resized.  By setting the RelativeTo property to Fill, the TextBox on the left will automatically resize.  For the Buttons on the right we must resize them manually, but by setting their RelativeTo property to Center it is still pretty easy.
 
@@ -233,4 +233,4 @@ leftContainer.RelativeTo = OpenGL.UI.Corner.BottomLeft;
 rightContainer.RelativeTo = OpenGL.UI.Corner.BottomRight;
 ```
 
-![Example 10 Animated](https://giawa.github.com/ui/example10.gif)
+![Example 10 Animated](https://giawa.github.io/ui/example10.gif)
